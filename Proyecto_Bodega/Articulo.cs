@@ -9,5 +9,6 @@ namespace Proyecto_Bodega
     class Articulo
     {
         public int id { set; get; }
+        public int hola;
 }
 }
