@@ -10,5 +10,9 @@ namespace Proyecto_Bodega
     {
 
         public string holi;
+
+        public int que;
+
+
     }
 }
