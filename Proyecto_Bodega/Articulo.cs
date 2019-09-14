@@ -30,5 +30,7 @@ namespace Proyecto_Bodega
             
 
         }
+
+        public void ActualizarPrecio () {}
     }
 }

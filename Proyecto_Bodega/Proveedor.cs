@@ -9,8 +9,9 @@ namespace Proyecto_Bodega
     public class Proveedor
     {
 
-        
+       public string PersonaContacto { get; set; } 
 
+        public void CambiarPersonaContacto() {}
 
     }
 }
