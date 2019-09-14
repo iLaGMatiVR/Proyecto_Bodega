@@ -8,5 +8,7 @@ namespace Proyecto_Bodega
 {
     public class Class1
     {
+
+        public string holi;
     }
 }
