@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Bodega
 {
-    public class Class1
+    public class Proveedor
     {
 
-        public string holi;
-
-        public int que;
+        
 
 
     }
