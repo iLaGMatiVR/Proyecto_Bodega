@@ -46,3 +46,4 @@ namespace Proyecto_Bodega
             Articulo.ListaArticulos[indice] = a;
         }
     }
+}
