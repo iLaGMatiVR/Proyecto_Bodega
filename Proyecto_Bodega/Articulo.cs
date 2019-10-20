@@ -26,5 +26,7 @@ namespace Proyecto_Bodega
         {
             ListaArticulos.Add(a);
         }
+
+        public void ActualizarPrecio () {}
     }
 }
