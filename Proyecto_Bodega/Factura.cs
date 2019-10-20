@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Bodega
 {
-    class Factura
+    public class Factura
     {
-        public DateTime FechaEmision { get; set; }
-        public int Timbrado { get; set; }
-        public int NroFactura { get; set; }
-        public int TimbradoVenta { get; set; }
-        public int Iva { get; set; }
+        private int NroFactura { get; set; }
+        private int Timbrado { get; set; }
+        private Cliente CodCliente { get; set; }
+        private string TipoPago { get; set; }
+        private DateTime FechaFactura { get; set; }
+
     }
 }
