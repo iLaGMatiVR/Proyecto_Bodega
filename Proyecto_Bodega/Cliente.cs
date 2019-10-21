@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Bodega
 {
-    public class Cliente
+    public class Cliente : Persona
     {
         public int CodCliente { get; set; }
         public string Sexo { get; set; }
