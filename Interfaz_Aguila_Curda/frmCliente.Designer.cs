@@ -51,54 +51,54 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(40, 253);
+            this.btnGuardar.Location = new System.Drawing.Point(38, 247);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(117, 30);
-            this.btnGuardar.TabIndex = 65;
+            this.btnGuardar.TabIndex = 84;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(216, 253);
+            this.btnEditar.Location = new System.Drawing.Point(214, 247);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(117, 30);
-            this.btnEditar.TabIndex = 64;
+            this.btnEditar.TabIndex = 83;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(566, 253);
+            this.btnEliminar.Location = new System.Drawing.Point(564, 247);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(117, 30);
-            this.btnEliminar.TabIndex = 63;
+            this.btnEliminar.TabIndex = 82;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(393, 253);
+            this.btnCancelar.Location = new System.Drawing.Point(391, 247);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(117, 30);
-            this.btnCancelar.TabIndex = 62;
+            this.btnCancelar.TabIndex = 81;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
             // txtCodCliente
             // 
-            this.txtCodCliente.Location = new System.Drawing.Point(164, 47);
+            this.txtCodCliente.Location = new System.Drawing.Point(162, 41);
             this.txtCodCliente.Name = "txtCodCliente";
             this.txtCodCliente.Size = new System.Drawing.Size(100, 20);
-            this.txtCodCliente.TabIndex = 61;
+            this.txtCodCliente.TabIndex = 80;
             // 
             // rdbMasculino
             // 
             this.rdbMasculino.AutoSize = true;
-            this.rdbMasculino.Location = new System.Drawing.Point(605, 144);
+            this.rdbMasculino.Location = new System.Drawing.Point(603, 138);
             this.rdbMasculino.Name = "rdbMasculino";
             this.rdbMasculino.Size = new System.Drawing.Size(73, 17);
-            this.rdbMasculino.TabIndex = 60;
+            this.rdbMasculino.TabIndex = 79;
             this.rdbMasculino.TabStop = true;
             this.rdbMasculino.Text = "Masculino";
             this.rdbMasculino.UseVisualStyleBackColor = true;
@@ -106,119 +106,118 @@
             // rdbFemenino
             // 
             this.rdbFemenino.AutoSize = true;
-            this.rdbFemenino.Location = new System.Drawing.Point(519, 143);
+            this.rdbFemenino.Location = new System.Drawing.Point(517, 137);
             this.rdbFemenino.Name = "rdbFemenino";
             this.rdbFemenino.Size = new System.Drawing.Size(71, 17);
-            this.rdbFemenino.TabIndex = 59;
+            this.rdbFemenino.TabIndex = 78;
             this.rdbFemenino.TabStop = true;
             this.rdbFemenino.Text = "Femenino";
             this.rdbFemenino.UseVisualStyleBackColor = true;
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Location = new System.Drawing.Point(519, 48);
+            this.txtTelefono.Location = new System.Drawing.Point(517, 42);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(100, 20);
-            this.txtTelefono.TabIndex = 58;
+            this.txtTelefono.TabIndex = 77;
             // 
             // txtDireccion
             // 
-            this.txtDireccion.Location = new System.Drawing.Point(519, 90);
+            this.txtDireccion.Location = new System.Drawing.Point(517, 84);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(100, 20);
-            this.txtDireccion.TabIndex = 57;
-            this.txtDireccion.TextChanged += new System.EventHandler(this.txtDireccion_TextChanged);
+            this.txtDireccion.TabIndex = 76;
             // 
             // dtpFechaNac
             // 
             this.dtpFechaNac.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaNac.Location = new System.Drawing.Point(164, 192);
+            this.dtpFechaNac.Location = new System.Drawing.Point(162, 186);
             this.dtpFechaNac.Name = "dtpFechaNac";
             this.dtpFechaNac.Size = new System.Drawing.Size(100, 20);
-            this.dtpFechaNac.TabIndex = 56;
+            this.dtpFechaNac.TabIndex = 75;
             // 
             // txtCI
             // 
-            this.txtCI.Location = new System.Drawing.Point(164, 143);
+            this.txtCI.Location = new System.Drawing.Point(162, 137);
             this.txtCI.Name = "txtCI";
             this.txtCI.Size = new System.Drawing.Size(100, 20);
-            this.txtCI.TabIndex = 55;
+            this.txtCI.TabIndex = 74;
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(164, 94);
+            this.txtNombre.Location = new System.Drawing.Point(162, 88);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(100, 20);
-            this.txtNombre.TabIndex = 54;
+            this.txtNombre.TabIndex = 73;
             // 
             // lblFechaNac
             // 
             this.lblFechaNac.AutoSize = true;
-            this.lblFechaNac.Location = new System.Drawing.Point(51, 198);
+            this.lblFechaNac.Location = new System.Drawing.Point(49, 192);
             this.lblFechaNac.Name = "lblFechaNac";
             this.lblFechaNac.Size = new System.Drawing.Size(96, 13);
-            this.lblFechaNac.TabIndex = 53;
+            this.lblFechaNac.TabIndex = 72;
             this.lblFechaNac.Text = "Fecha Nacimiento:";
             // 
             // lblSexo
             // 
             this.lblSexo.AutoSize = true;
-            this.lblSexo.Location = new System.Drawing.Point(406, 147);
+            this.lblSexo.Location = new System.Drawing.Point(404, 141);
             this.lblSexo.Name = "lblSexo";
             this.lblSexo.Size = new System.Drawing.Size(34, 13);
-            this.lblSexo.TabIndex = 52;
+            this.lblSexo.TabIndex = 71;
             this.lblSexo.Text = "Sexo:";
             // 
             // lblDireccion
             // 
             this.lblDireccion.AutoSize = true;
-            this.lblDireccion.Location = new System.Drawing.Point(406, 97);
+            this.lblDireccion.Location = new System.Drawing.Point(404, 91);
             this.lblDireccion.Name = "lblDireccion";
             this.lblDireccion.Size = new System.Drawing.Size(55, 13);
-            this.lblDireccion.TabIndex = 51;
+            this.lblDireccion.TabIndex = 70;
             this.lblDireccion.Text = "Dirección:";
             // 
             // lblTelefono
             // 
             this.lblTelefono.AutoSize = true;
-            this.lblTelefono.Location = new System.Drawing.Point(406, 51);
+            this.lblTelefono.Location = new System.Drawing.Point(404, 45);
             this.lblTelefono.Name = "lblTelefono";
             this.lblTelefono.Size = new System.Drawing.Size(52, 13);
-            this.lblTelefono.TabIndex = 50;
+            this.lblTelefono.TabIndex = 69;
             this.lblTelefono.Text = "Telefono:";
             // 
             // lblCI
             // 
             this.lblCI.AutoSize = true;
-            this.lblCI.Location = new System.Drawing.Point(51, 150);
+            this.lblCI.Location = new System.Drawing.Point(49, 144);
             this.lblCI.Name = "lblCI";
             this.lblCI.Size = new System.Drawing.Size(20, 13);
-            this.lblCI.TabIndex = 49;
+            this.lblCI.TabIndex = 68;
             this.lblCI.Text = "CI:";
             // 
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(51, 101);
+            this.lblNombre.Location = new System.Drawing.Point(49, 95);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(47, 13);
-            this.lblNombre.TabIndex = 48;
+            this.lblNombre.TabIndex = 67;
             this.lblNombre.Text = "Nombre:";
             // 
             // lblCodCliente
             // 
             this.lblCodCliente.AutoSize = true;
-            this.lblCodCliente.Location = new System.Drawing.Point(51, 54);
+            this.lblCodCliente.Location = new System.Drawing.Point(49, 48);
             this.lblCodCliente.Name = "lblCodCliente";
             this.lblCodCliente.Size = new System.Drawing.Size(78, 13);
-            this.lblCodCliente.TabIndex = 47;
+            this.lblCodCliente.TabIndex = 66;
             this.lblCodCliente.Text = "Código Cliente:";
             // 
             // frmCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 341);
+            this.ClientSize = new System.Drawing.Size(730, 334);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnEliminar);
@@ -239,7 +238,7 @@
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.lblCodCliente);
             this.Name = "frmCliente";
-            this.Text = "Mantenimiento de Cliente";
+            this.Text = "frmCliente";
             this.ResumeLayout(false);
             this.PerformLayout();
 

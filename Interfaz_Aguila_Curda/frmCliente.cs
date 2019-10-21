@@ -17,9 +17,26 @@ namespace Interfaz_Aguila_Curda
             InitializeComponent();
         }
 
-        private void txtDireccion_TextChanged(object sender, EventArgs e)
-        {
 
+        private void LimpiarFormulario()
+        {
+            txtCodCliente.Text = "";
+            txtNombre.Text = "";
+            txtCI.Text = "";
+            txtTelefono.Text = "";
+            txtDireccion.Text = "";
+            dtpFechaNac.Value = DateTime.Now;
+            rdbFemenino.Checked = false;
+            rdbMasculino.Checked = false;
         }
+
+
+
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
+        }
+
     }
 }

@@ -16,5 +16,20 @@ namespace Interfaz_Aguila_Curda
         {
             InitializeComponent();
         }
+
+        private void LimpiarFormulario()
+        {
+            txtCodProveedor.Text = "";
+            txtNombre.Text = "";
+            txtRUC.Text = "";
+            txtTelefono.Text = "";
+            txtDireccion.Text = "";
+            txtContacto.Text = "";
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
+        }
     }
 }
