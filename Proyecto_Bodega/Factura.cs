@@ -6,13 +6,45 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Bodega
 {
+    public enum TipoPago
+    {
+        Contado,
+        Credito
+    }
+
     public class Factura
     {
-        private int NroFactura { get; set; }
-        private int Timbrado { get; set; }
-        private Cliente CodCliente { get; set; }
-        private string TipoPago { get; set; }
-        private DateTime FechaFactura { get; set; }
+        public string NroFactura { get; set; }
+        public string Timbrado { get; set; }
+        public string Nombre { get; set; }
+        public TipoPago TipoPago { get; set; }
+        public DateTime FechaFactura { get; set; }
+
+        public static List<Factura> listaFactura = new List<Factura>();
+
+        public static void AgregarFactura(Factura fac)
+        {
+            listaFactura.Add(fac);
+        }
+
+        public static void EliminarFactura(Factura prenda)
+        {
+            listaFactura.Remove(prenda);
+        }
+        public static void ModificarFactura(Factura pre, int indice)
+        {
+            Factura.listaFactura[indice] = pre;
+        }
+
+        public static List<Factura> ObtenerFactura()
+        {
+            return listaFactura;
+        }
+
+        public override string ToString()
+        {
+            return this.NroFactura;
+        }
 
     }
 }
