@@ -1,6 +1,6 @@
 ﻿namespace Interfaz_Aguila_Curda
 {
-    partial class frmFacturas
+    partial class Compra
     {
         /// <summary>
         /// Required designer variable.
@@ -44,11 +44,8 @@
             this.label17 = new System.Windows.Forms.Label();
             this.txtIdFactura = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dgvFactura = new System.Windows.Forms.DataGridView();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFactura)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -70,12 +67,12 @@
             this.groupBox2.Controls.Add(this.label18);
             this.groupBox2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.Black;
-            this.groupBox2.Location = new System.Drawing.Point(16, 17);
+            this.groupBox2.Location = new System.Drawing.Point(13, 30);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1190, 345);
-            this.groupBox2.TabIndex = 40;
+            this.groupBox2.Size = new System.Drawing.Size(1127, 332);
+            this.groupBox2.TabIndex = 41;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Datos de Factura";
+            this.groupBox2.Text = "Datos de Compra";
             // 
             // txtTimbrado
             // 
@@ -230,7 +227,6 @@
             this.txtIdFactura.Name = "txtIdFactura";
             this.txtIdFactura.Size = new System.Drawing.Size(260, 30);
             this.txtIdFactura.TabIndex = 14;
-            this.txtIdFactura.TextChanged += new System.EventHandler(this.txtIdFactura_TextChanged);
             // 
             // label18
             // 
@@ -240,46 +236,30 @@
             this.label18.Location = new System.Drawing.Point(22, 158);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(70, 23);
+            this.label18.Size = new System.Drawing.Size(101, 23);
             this.label18.TabIndex = 13;
-            this.label18.Text = "Cliente";
+            this.label18.Text = "Proveedor";
             // 
-            // groupBox1
+            // listBox1
             // 
-            this.groupBox1.Controls.Add(this.dgvFactura);
-            this.groupBox1.Location = new System.Drawing.Point(18, 394);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(1190, 380);
-            this.groupBox1.TabIndex = 41;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Detalle Factura";
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 20;
+            this.listBox1.Location = new System.Drawing.Point(29, 381);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(1101, 244);
+            this.listBox1.TabIndex = 42;
             // 
-            // dgvFactura
-            // 
-            this.dgvFactura.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFactura.Location = new System.Drawing.Point(51, 71);
-            this.dgvFactura.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dgvFactura.Name = "dgvFactura";
-            this.dgvFactura.RowHeadersWidth = 62;
-            this.dgvFactura.Size = new System.Drawing.Size(1114, 245);
-            this.dgvFactura.TabIndex = 0;
-            // 
-            // frmFacturas
+            // Compra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 845);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(1152, 645);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.groupBox2);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "frmFacturas";
-            this.Text = "frmFacturas";
+            this.Name = "Compra";
+            this.Text = "Compra";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFactura)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -302,7 +282,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtIdFactura;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dgvFactura;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
