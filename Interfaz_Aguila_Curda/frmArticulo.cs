@@ -18,10 +18,9 @@ namespace Interfaz_Aguila_Curda
         {
             InitializeComponent();
         }
-
         //Boton Agregar articulo
         private void btnAgregar_Click(object sender, EventArgs e)
-        {            
+        {
 
             if (modo == "AGREGAR")
             {
@@ -142,6 +141,80 @@ namespace Interfaz_Aguila_Curda
         {
 
         }
+
+        private void nudPrecio_unit_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nudCosto_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateVencimiento_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbProveedor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMarca_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDescripcion_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
-
