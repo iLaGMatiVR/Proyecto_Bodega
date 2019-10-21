@@ -19,7 +19,7 @@ namespace Proyecto_Bodega
         {
 
         }
-        public Articulo(int id, string descripcion, string marca, int costo, int precio_unit,)
+        public Articulo(int id, string descripcion, string marca, int costo, int precio_unit)
         {
             this.Id = id;
             this.Descripcion = descripcion;
