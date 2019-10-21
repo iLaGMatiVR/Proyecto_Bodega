@@ -18,11 +18,10 @@ namespace Interfaz_Aguila_Curda
         {
             InitializeComponent();
         }
+
         //Boton Agregar articulo
         private void btnAgregar_Click(object sender, EventArgs e)
-        {
-
-
+        {            
 
             if (modo == "AGREGAR")
             {
@@ -145,3 +144,4 @@ namespace Interfaz_Aguila_Curda
         }
     }
 }
+
