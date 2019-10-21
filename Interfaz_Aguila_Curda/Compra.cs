@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Interfaz_Aguila_Curda
 {
-    public partial class frmFacturas : Form
+    public partial class Compra : Form
     {
-        public frmFacturas()
+        public Compra()
         {
             InitializeComponent();
-        }
-
-        private void txtIdFactura_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
