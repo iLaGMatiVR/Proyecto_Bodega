@@ -16,5 +16,10 @@ namespace Interfaz_Aguila_Curda
         {
             InitializeComponent();
         }
+
+        private void txtDireccion_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
