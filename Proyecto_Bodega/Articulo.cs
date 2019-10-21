@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Bodega
 {
-    class Articulo
+    public class Articulo
     {
         public int Id { set; get; }
         public string Descripcion { set; get; }

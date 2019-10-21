@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Clases_Aguila_Curda;
+using Proyecto_Bodega;
 
 namespace Interfaz_Aguila_Curda
 {
@@ -18,7 +18,6 @@ namespace Interfaz_Aguila_Curda
         {
             InitializeComponent();
         }
-
         //Boton Agregar articulo
         private void btnAgregar_Click(object sender, EventArgs e)
         {
