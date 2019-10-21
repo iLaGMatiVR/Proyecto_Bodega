@@ -8,18 +8,3 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Interfaz_Aguila_Curda
-{
-    public partial class frmFacturas : Form
-    {
-        public frmFacturas()
-        {
-            InitializeComponent();
-        }
-
-        private void txtIdFactura_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-    }
-}
