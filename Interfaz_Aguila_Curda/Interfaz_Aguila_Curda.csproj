@@ -68,6 +68,9 @@
     <Compile Include="frmFacturas.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmFacturas.Designer.cs">
+      <DependentUpon>frmFacturas.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProveedor.cs">
       <SubType>Form</SubType>
     </Compile>
