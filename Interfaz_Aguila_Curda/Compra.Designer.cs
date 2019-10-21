@@ -32,38 +32,36 @@
             this.txtTimbrado = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnNuevo = new System.Windows.Forms.Button();
             this.cmbTipoPago = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dtpFechaFactura = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtNomClie = new System.Windows.Forms.TextBox();
+            this.txtProveedor = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.txtIdFactura = new System.Windows.Forms.TextBox();
+            this.txtFactura = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lstcompra = new System.Windows.Forms.ListBox();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnModificar = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnAgregar);
+            this.groupBox2.Controls.Add(this.btnEliminar);
+            this.groupBox2.Controls.Add(this.btnModificar);
             this.groupBox2.Controls.Add(this.txtTimbrado);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.btnGuardar);
-            this.groupBox2.Controls.Add(this.btnCancelar);
-            this.groupBox2.Controls.Add(this.btnEditar);
-            this.groupBox2.Controls.Add(this.btnNuevo);
             this.groupBox2.Controls.Add(this.cmbTipoPago);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.dtpFechaFactura);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.txtNomClie);
+            this.groupBox2.Controls.Add(this.txtProveedor);
             this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Controls.Add(this.txtIdFactura);
+            this.groupBox2.Controls.Add(this.txtFactura);
             this.groupBox2.Controls.Add(this.label18);
             this.groupBox2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.Black;
@@ -105,54 +103,6 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 23);
             this.label3.TabIndex = 68;
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.BackColor = System.Drawing.Color.Aqua;
-            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnGuardar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(648, 131);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(160, 45);
-            this.btnGuardar.TabIndex = 67;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = false;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.BackColor = System.Drawing.Color.Aqua;
-            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnCancelar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(866, 126);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(160, 45);
-            this.btnCancelar.TabIndex = 66;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.BackColor = System.Drawing.Color.Aqua;
-            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnEditar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Location = new System.Drawing.Point(648, 211);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(160, 45);
-            this.btnEditar.TabIndex = 65;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = false;
-            // 
-            // btnNuevo
-            // 
-            this.btnNuevo.BackColor = System.Drawing.Color.Aqua;
-            this.btnNuevo.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnNuevo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevo.Location = new System.Drawing.Point(866, 211);
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(160, 45);
-            this.btnNuevo.TabIndex = 64;
-            this.btnNuevo.Text = "Nuevo";
-            this.btnNuevo.UseVisualStyleBackColor = false;
             // 
             // cmbTipoPago
             // 
@@ -198,14 +148,14 @@
             this.label2.TabIndex = 32;
             this.label2.Text = "Fecha:";
             // 
-            // txtNomClie
+            // txtProveedor
             // 
-            this.txtNomClie.Enabled = false;
-            this.txtNomClie.Location = new System.Drawing.Point(184, 146);
-            this.txtNomClie.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtNomClie.Name = "txtNomClie";
-            this.txtNomClie.Size = new System.Drawing.Size(256, 30);
-            this.txtNomClie.TabIndex = 16;
+            this.txtProveedor.Enabled = false;
+            this.txtProveedor.Location = new System.Drawing.Point(184, 146);
+            this.txtProveedor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtProveedor.Name = "txtProveedor";
+            this.txtProveedor.Size = new System.Drawing.Size(256, 30);
+            this.txtProveedor.TabIndex = 16;
             // 
             // label17
             // 
@@ -219,14 +169,14 @@
             this.label17.TabIndex = 15;
             this.label17.Text = "Nro Factura";
             // 
-            // txtIdFactura
+            // txtFactura
             // 
-            this.txtIdFactura.Enabled = false;
-            this.txtIdFactura.Location = new System.Drawing.Point(180, 38);
-            this.txtIdFactura.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtIdFactura.Name = "txtIdFactura";
-            this.txtIdFactura.Size = new System.Drawing.Size(260, 30);
-            this.txtIdFactura.TabIndex = 14;
+            this.txtFactura.Enabled = false;
+            this.txtFactura.Location = new System.Drawing.Point(180, 38);
+            this.txtFactura.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtFactura.Name = "txtFactura";
+            this.txtFactura.Size = new System.Drawing.Size(260, 30);
+            this.txtFactura.TabIndex = 14;
             // 
             // label18
             // 
@@ -240,21 +190,61 @@
             this.label18.TabIndex = 13;
             this.label18.Text = "Proveedor";
             // 
-            // listBox1
+            // lstcompra
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(29, 381);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(1101, 244);
-            this.listBox1.TabIndex = 42;
+            this.lstcompra.FormattingEnabled = true;
+            this.lstcompra.ItemHeight = 20;
+            this.lstcompra.Location = new System.Drawing.Point(29, 381);
+            this.lstcompra.Name = "lstcompra";
+            this.lstcompra.Size = new System.Drawing.Size(1101, 244);
+            this.lstcompra.TabIndex = 42;
+            this.lstcompra.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.BackColor = System.Drawing.Color.Aqua;
+            this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnAgregar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.Location = new System.Drawing.Point(639, 80);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(160, 45);
+            this.btnAgregar.TabIndex = 73;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = false;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.BackColor = System.Drawing.Color.Aqua;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnEliminar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.Location = new System.Drawing.Point(639, 216);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(160, 45);
+            this.btnEliminar.TabIndex = 72;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.BackColor = System.Drawing.Color.Aqua;
+            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnModificar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificar.Location = new System.Drawing.Point(639, 144);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(160, 45);
+            this.btnModificar.TabIndex = 71;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = false;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // Compra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1152, 645);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lstcompra);
             this.Controls.Add(this.groupBox2);
             this.Name = "Compra";
             this.Text = "Compra";
@@ -270,18 +260,17 @@
         private System.Windows.Forms.TextBox txtTimbrado;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.ComboBox cmbTipoPago;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dtpFechaFactura;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtNomClie;
+        private System.Windows.Forms.TextBox txtProveedor;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox txtIdFactura;
+        private System.Windows.Forms.TextBox txtFactura;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lstcompra;
+        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnModificar;
     }
 }

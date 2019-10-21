@@ -27,9 +27,9 @@ namespace Proyecto_Bodega
             listaFactura.Add(fac);
         }
 
-        public static void EliminarFactura(Factura prenda)
+        public static void EliminarFactura(Factura fact)
         {
-            listaFactura.Remove(prenda);
+            listaFactura.Remove(fact);
         }
         public static void ModificarFactura(Factura pre, int indice)
         {
