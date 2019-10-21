@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Bodega
 {
-    class Cliente
+    public class Cliente
     {
-
+        public int CodCliente { get; set; }
         public string Sexo { get; set; }
         public DateTime FechaNacimiento { get; set; }
 
