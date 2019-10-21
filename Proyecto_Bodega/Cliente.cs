@@ -14,4 +14,31 @@ namespace Proyecto_Bodega
 
         public void ActualizarDatosCliente() { }
     }
+
+    public static List<Cliente> listaCliente = new List<Cliente>();
+
+    public static void AgregarCliente(Cliente cli)
+    {
+        listaCliente.Add(cli);
+    }
+
+    public static void EliminarCliente(Cliente cli)
+    {
+        listaCliente.Remove(cli);
+    }
+    public static void ModificarCliente(Cliente cli, int indice)
+    {
+        Factura.listaFactura[indice] = cli;
+    }
+
+    public static List<Cliente> ObtenerCliente()
+    {
+        return listaCliente;
+    }
+
+    public override string ToString()
+    {
+        return this.CodCliente;
+    }
 }
+

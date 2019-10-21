@@ -14,4 +14,31 @@ namespace Proyecto_Bodega
         public void CambiarPersonaContacto() {}
 
     }
+
+    public static List<Proveedor> listaProveedor = new List<Proveedor>();
+
+    public static void AgregarProveedor(Proveedor pro)
+    {
+        listaProveedor.Add(pro);
+    }
+
+    public static void EliminarProveedor(Proveedor pro)
+    {
+        listaProveedor.Remove(pro);
+    }
+    public static void ModificarProveedor(Proveedor pro, int indice)
+    {
+        Proveedor.listaProveedor[indice] = pro;
+    }
+
+    public static List<Proveedor> ObtenerProveedor()
+    {
+        return listaProveedor;
+    }
+
+    public override string ToString()
+    {
+        return this.CodProveedor;
+    }
+
 }
