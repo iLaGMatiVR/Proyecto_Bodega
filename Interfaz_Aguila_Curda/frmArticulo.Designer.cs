@@ -36,18 +36,18 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
-            this.domainUpDown2 = new System.Windows.Forms.DomainUpDown();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.txtMarca = new System.Windows.Forms.TextBox();
+            this.cmbProveedor = new System.Windows.Forms.ComboBox();
+            this.dmbCosto = new System.Windows.Forms.DomainUpDown();
+            this.dmbPrecioUnit = new System.Windows.Forms.DomainUpDown();
+            this.dateVencimiento = new System.Windows.Forms.DateTimePicker();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.lstArticulos = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // label1
@@ -109,9 +109,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(265, 90);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(62, 13);
+            this.label7.Size = new System.Drawing.Size(65, 13);
             this.label7.TabIndex = 6;
-            this.label7.Text = "Precio Uni.:";
+            this.label7.Text = "Precio Unit.:";
             // 
             // label8
             // 
@@ -122,119 +122,125 @@
             this.label8.TabIndex = 7;
             this.label8.Text = "Vencimiento:";
             // 
-            // textBox1
+            // txtDescripcion
             // 
-            this.textBox1.Location = new System.Drawing.Point(86, 47);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(124, 20);
-            this.textBox1.TabIndex = 8;
+            this.txtDescripcion.Location = new System.Drawing.Point(84, 47);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(124, 20);
+            this.txtDescripcion.TabIndex = 8;
             // 
-            // textBox2
+            // txtId
             // 
-            this.textBox2.Location = new System.Drawing.Point(86, 87);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(124, 20);
-            this.textBox2.TabIndex = 9;
+            this.txtId.Location = new System.Drawing.Point(84, 87);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(124, 20);
+            this.txtId.TabIndex = 9;
             // 
-            // textBox3
+            // txtMarca
             // 
-            this.textBox3.Location = new System.Drawing.Point(86, 126);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(124, 20);
-            this.textBox3.TabIndex = 10;
+            this.txtMarca.Location = new System.Drawing.Point(84, 126);
+            this.txtMarca.Name = "txtMarca";
+            this.txtMarca.Size = new System.Drawing.Size(124, 20);
+            this.txtMarca.TabIndex = 10;
             // 
-            // comboBox1
+            // cmbProveedor
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(86, 167);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(124, 21);
-            this.comboBox1.TabIndex = 11;
+            this.cmbProveedor.FormattingEnabled = true;
+            this.cmbProveedor.Location = new System.Drawing.Point(84, 167);
+            this.cmbProveedor.Name = "cmbProveedor";
+            this.cmbProveedor.Size = new System.Drawing.Size(124, 21);
+            this.cmbProveedor.TabIndex = 11;
             // 
-            // domainUpDown1
+            // dmbCosto
             // 
-            this.domainUpDown1.Location = new System.Drawing.Point(339, 48);
-            this.domainUpDown1.Name = "domainUpDown1";
-            this.domainUpDown1.Size = new System.Drawing.Size(137, 20);
-            this.domainUpDown1.TabIndex = 12;
-            this.domainUpDown1.Text = "domainUpDown1";
+            this.dmbCosto.Location = new System.Drawing.Point(339, 48);
+            this.dmbCosto.Name = "dmbCosto";
+            this.dmbCosto.Size = new System.Drawing.Size(137, 20);
+            this.dmbCosto.TabIndex = 12;
+            this.dmbCosto.Text = "domainUpDown1";
             // 
-            // domainUpDown2
+            // dmbPrecioUnit
             // 
-            this.domainUpDown2.Location = new System.Drawing.Point(339, 88);
-            this.domainUpDown2.Name = "domainUpDown2";
-            this.domainUpDown2.Size = new System.Drawing.Size(137, 20);
-            this.domainUpDown2.TabIndex = 13;
-            this.domainUpDown2.Text = "domainUpDown2";
+            this.dmbPrecioUnit.Location = new System.Drawing.Point(339, 88);
+            this.dmbPrecioUnit.Name = "dmbPrecioUnit";
+            this.dmbPrecioUnit.Size = new System.Drawing.Size(137, 20);
+            this.dmbPrecioUnit.TabIndex = 13;
+            this.dmbPrecioUnit.Text = "domainUpDown2";
             // 
-            // dateTimePicker1
+            // dateVencimiento
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(339, 126);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(137, 20);
-            this.dateTimePicker1.TabIndex = 14;
+            this.dateVencimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateVencimiento.Location = new System.Drawing.Point(339, 126);
+            this.dateVencimiento.Name = "dateVencimiento";
+            this.dateVencimiento.Size = new System.Drawing.Size(137, 20);
+            this.dateVencimiento.TabIndex = 14;
             // 
-            // button1
+            // btnAgregar
             // 
-            this.button1.Location = new System.Drawing.Point(32, 225);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 29);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAgregar.Location = new System.Drawing.Point(32, 225);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(100, 29);
+            this.btnAgregar.TabIndex = 15;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // button2
+            // btnEditar
             // 
-            this.button2.Location = new System.Drawing.Point(138, 225);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 29);
-            this.button2.TabIndex = 16;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnEditar.Location = new System.Drawing.Point(138, 225);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(100, 29);
+            this.btnEditar.TabIndex = 16;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // button3
+            // btnEliminar
             // 
-            this.button3.Location = new System.Drawing.Point(244, 225);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 29);
-            this.button3.TabIndex = 17;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnEliminar.Location = new System.Drawing.Point(244, 225);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(100, 29);
+            this.btnEliminar.TabIndex = 17;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // button4
+            // btnLimpiar
             // 
-            this.button4.Location = new System.Drawing.Point(350, 225);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 29);
-            this.button4.TabIndex = 18;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Location = new System.Drawing.Point(350, 225);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(100, 29);
+            this.btnLimpiar.TabIndex = 18;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
-            // listBox1
+            // lstArticulos
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(15, 275);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(461, 173);
-            this.listBox1.TabIndex = 19;
+            this.lstArticulos.FormattingEnabled = true;
+            this.lstArticulos.Location = new System.Drawing.Point(15, 275);
+            this.lstArticulos.Name = "lstArticulos";
+            this.lstArticulos.Size = new System.Drawing.Size(461, 173);
+            this.lstArticulos.TabIndex = 19;
+            this.lstArticulos.SelectedIndexChanged += new System.EventHandler(this.lstArticulos_SelectedIndexChanged);
             // 
             // frmArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(502, 460);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.domainUpDown2);
-            this.Controls.Add(this.domainUpDown1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(493, 460);
+            this.Controls.Add(this.lstArticulos);
+            this.Controls.Add(this.btnLimpiar);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnEditar);
+            this.Controls.Add(this.btnAgregar);
+            this.Controls.Add(this.dateVencimiento);
+            this.Controls.Add(this.dmbPrecioUnit);
+            this.Controls.Add(this.dmbCosto);
+            this.Controls.Add(this.cmbProveedor);
+            this.Controls.Add(this.txtMarca);
+            this.Controls.Add(this.txtId);
+            this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -260,17 +266,17 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.DomainUpDown domainUpDown1;
-        private System.Windows.Forms.DomainUpDown domainUpDown2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.TextBox txtDescripcion;
+        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.TextBox txtMarca;
+        private System.Windows.Forms.ComboBox cmbProveedor;
+        private System.Windows.Forms.DomainUpDown dmbCosto;
+        private System.Windows.Forms.DomainUpDown dmbPrecioUnit;
+        private System.Windows.Forms.DateTimePicker dateVencimiento;
+        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.ListBox lstArticulos;
     }
 }

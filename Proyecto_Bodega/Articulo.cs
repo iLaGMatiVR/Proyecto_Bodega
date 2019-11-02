@@ -15,6 +15,9 @@ namespace Proyecto_Bodega
         public double Precio_Unit { set; get; }
         public DateTime Fecha_Venc { set; get; }
         public Proveedor Proveedor { set; get; }
+        public static List<Proveedor> ListaProveedor = new List<Proveedor>();
+
+        public Articulo articulo { set; get; }
         public static List<Articulo> ListaArticulos = new List<Articulo>();
 
         public override string ToString()
