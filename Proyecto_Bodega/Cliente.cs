@@ -8,12 +8,12 @@ namespace Proyecto_Bodega
 {
     public class Cliente : Persona
     {
-        public int CodCliente { get; set; }
+        public string CodCliente { get; set; }
         public string Sexo { get; set; }
         public DateTime FechaNacimiento { get; set; }
 
         public void ActualizarDatosCliente() { }
-    }
+    
 
     public static List<Cliente> listaCliente = new List<Cliente>();
 
@@ -28,7 +28,7 @@ namespace Proyecto_Bodega
     }
     public static void ModificarCliente(Cliente cli, int indice)
     {
-        Factura.listaFactura[indice] = cli;
+        Cliente.listaCliente[indice] = cli;
     }
 
     public static List<Cliente> ObtenerCliente()
@@ -40,5 +40,6 @@ namespace Proyecto_Bodega
     {
         return this.CodCliente;
     }
+}
 }
 

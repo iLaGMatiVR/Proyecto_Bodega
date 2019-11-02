@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Proyecto_Bodega;
 
+
 namespace Interfaz_Aguila_Curda
 {
     public partial class frmCliente : Form
@@ -18,7 +19,14 @@ namespace Interfaz_Aguila_Curda
             InitializeComponent();
         }
 
-
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            var cli = ObtenerDatosFormulario();
+            Cliente.AgregarCliente(cli);
+            ActualizarListaCliente();
+            LimpiarFormulario();
+            txtCodCliente.Focus();
+        }
         private void LimpiarFormulario()
         {
             txtCodCliente.Text = "";
@@ -33,32 +41,7 @@ namespace Interfaz_Aguila_Curda
 
 
 
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            LimpiarFormulario();
-        }
-
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            LimpiarFormulario();
-        }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            var cli = ObtenerDatosFormulario();
-            Cliente.AgregarCliente(cli);
-            ActualizarLista();
-            LimpiarFormulario();
-            txtCodCliente.Focus();
-        }
-
-        private void ActualizarLista()
-        {
-            lstCliente.DataSource = null;
-            lstCliente.DataSource = Cliente.ObtenerCliente();
-        }
+       
 
 
         private Cliente ObtenerDatosFormulario()
@@ -78,13 +61,22 @@ namespace Interfaz_Aguila_Curda
             return cliente;
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
+        private void ActualizarListaCliente()
+        {
+            lstCliente.DataSource = null;
+            lstCliente.DataSource = Cliente.ObtenerCliente();
+        }
+
+
+
+
+        private void btnEditar_Click(object sender, EventArgs e)
         {
             if (lstCliente.SelectedItems.Count > 0)
             {
                 int index = lstCliente.SelectedIndex;
                 Cliente.listaCliente[index] = ObtenerDatosFormulario();
-                ActualizarLista();
+                ActualizarListaCliente();
 
             }
             else
@@ -93,7 +85,14 @@ namespace Interfaz_Aguila_Curda
             }
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+       
+
+        private void btnCancelar_Click_1(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
+        }
+
+        private void btnEliminar_Click_1(object sender, EventArgs e)
         {
             if (this.lstCliente.SelectedItems.Count == 0)
             {
@@ -101,16 +100,16 @@ namespace Interfaz_Aguila_Curda
             }
             else
             {
-                Factura f = (Factura)lstCliente.SelectedItem;
-                Factura.EliminarFactura(f);
-                ActualizarLista();
+                Cliente c = (Cliente)lstCliente.SelectedItem;
+                Cliente.EliminarCliente(c);
+                ActualizarListaCliente();
                 LimpiarFormulario();
             }
         }
 
-        private void lstFactura_Click(object sender, EventArgs e)
+        private void lstCliente_Click_1(object sender, EventArgs e)
         {
-            Cliente factura = (Cliente)lstCliente.SelectedItem;
+            Cliente cliente = (Cliente)lstCliente.SelectedItem;
             if (cliente != null)
             {
                 txtCodCliente.Text = cliente.CodCliente;
@@ -122,8 +121,9 @@ namespace Interfaz_Aguila_Curda
 
             }
         }
+
+        
     }
 
 }
-
 

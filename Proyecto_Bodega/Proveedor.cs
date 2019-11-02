@@ -8,12 +8,12 @@ namespace Proyecto_Bodega
 {
     public class Proveedor : Persona
     {
-        public int CodProveedor { get; set; }
+        public string CodProveedor { get; set; }
         public string PersonaContacto { get; set; } 
 
         public void CambiarPersonaContacto() {}
 
-    }
+    
 
     public static List<Proveedor> listaProveedor = new List<Proveedor>();
 
@@ -39,6 +39,7 @@ namespace Proyecto_Bodega
     public override string ToString()
     {
         return this.CodProveedor;
+    }
     }
 
 }

@@ -28,25 +28,12 @@ namespace Interfaz_Aguila_Curda
             txtContacto.Text = "";
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            LimpiarFormulario();
-        }
-
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            var pro = ObtenerDatosFormulario();
-            Proveedor.AgregarFactura(pro);
-            ActualizarLista();
-            LimpiarFormulario();
-            txtCodProveedor.Focus();
-        }
-
+        
+       
         private void ActualizarLista()
         {
             lstProveedor.DataSource = null;
-            lstProveedor.DataSource = Proveedor.ObtenerFactura();
+            lstProveedor.DataSource = Proveedor.ObtenerProveedor();
         }
 
 
@@ -59,29 +46,30 @@ namespace Interfaz_Aguila_Curda
             proveedor.Nombre = txtNombre.Text;
             proveedor.Telefono = txtTelefono.Text;
             proveedor.Direccion = txtDireccion.Text;
-            proveedor.Contacto = txtContacto.Text;
+            proveedor.PersonaContacto = txtContacto.Text;
             proveedor.NroDocumento = txtRUC.Text;
 
 
             return proveedor;
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
+       
+        private void lstProveedor_Click(object sender, EventArgs e)
         {
-            if (lstProveedor.SelectedItems.Count > 0)
+            Proveedor proveedor = (Proveedor)lstProveedor.SelectedItem;
+            if (proveedor != null)
             {
-                int index = lstProveedor.SelectedIndex;
-                Proveedor.listaFactura[index] = ObtenerDatosFormulario();
-                ActualizarLista();
+                txtCodProveedor.Text = proveedor.CodProveedor;
+                txtRUC.Text = proveedor.NroDocumento;
+                txtNombre.Text = proveedor.Nombre;
+                txtTelefono.Text = proveedor.Telefono;
+                txtDireccion.Text = proveedor.Direccion;
+                txtContacto.Text = proveedor.PersonaContacto;
 
-            }
-            else
-            {
-                MessageBox.Show("Favor seleccionar de la fila para modificar");
             }
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void btnEliminar_Click_1(object sender, EventArgs e)
         {
             if (this.lstProveedor.SelectedItems.Count == 0)
             {
@@ -96,19 +84,33 @@ namespace Interfaz_Aguila_Curda
             }
         }
 
-        private void lstFactura_Click(object sender, EventArgs e)
+        private void btnCancelar_Click_1(object sender, EventArgs e)
         {
-            Proveedor proveedor = (Proveedor)lstProveedor.SelectedItem;
-            if (proveedor != null)
+            LimpiarFormulario();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (lstProveedor.SelectedItems.Count > 0)
             {
-                txtCodProveedor.Text = proveedor.CodProveedor;
-                txtRUC.Text = proveedor.NroDocumento;
-                txtNombre.Text = proveedor.Nombre;
-                txtTelefono.Text = proveedor.Telefono;
-                txtDireccion.Text = proveedor.Direccion;
-                txtContacto.Text = proveedor.Contacto;
+                int index = lstProveedor.SelectedIndex;
+                Proveedor.listaProveedor[index] = ObtenerDatosFormulario();
+                ActualizarLista();
 
             }
+            else
+            {
+                MessageBox.Show("Favor seleccionar de la fila para modificar");
+            }
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            var pro = ObtenerDatosFormulario();
+            Proveedor.AgregarProveedor(pro);
+            ActualizarLista();
+            LimpiarFormulario();
+            txtCodProveedor.Focus();
         }
     }
 }
