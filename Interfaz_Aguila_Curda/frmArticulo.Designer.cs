@@ -40,14 +40,16 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.txtMarca = new System.Windows.Forms.TextBox();
             this.cmbProveedor = new System.Windows.Forms.ComboBox();
-            this.dmbCosto = new System.Windows.Forms.DomainUpDown();
-            this.dmbPrecioUnit = new System.Windows.Forms.DomainUpDown();
             this.dateVencimiento = new System.Windows.Forms.DateTimePicker();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.lstArticulos = new System.Windows.Forms.ListBox();
+            this.nudCosto = new System.Windows.Forms.NumericUpDown();
+            this.nudPrecioUnit = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCosto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPrecioUnit)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -151,22 +153,6 @@
             this.cmbProveedor.Size = new System.Drawing.Size(124, 21);
             this.cmbProveedor.TabIndex = 11;
             // 
-            // dmbCosto
-            // 
-            this.dmbCosto.Location = new System.Drawing.Point(339, 48);
-            this.dmbCosto.Name = "dmbCosto";
-            this.dmbCosto.Size = new System.Drawing.Size(137, 20);
-            this.dmbCosto.TabIndex = 12;
-            this.dmbCosto.Text = "domainUpDown1";
-            // 
-            // dmbPrecioUnit
-            // 
-            this.dmbPrecioUnit.Location = new System.Drawing.Point(339, 88);
-            this.dmbPrecioUnit.Name = "dmbPrecioUnit";
-            this.dmbPrecioUnit.Size = new System.Drawing.Size(137, 20);
-            this.dmbPrecioUnit.TabIndex = 13;
-            this.dmbPrecioUnit.Text = "domainUpDown2";
-            // 
             // dateVencimiento
             // 
             this.dateVencimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -224,19 +210,33 @@
             this.lstArticulos.TabIndex = 19;
             this.lstArticulos.SelectedIndexChanged += new System.EventHandler(this.lstArticulos_SelectedIndexChanged);
             // 
+            // nudCosto
+            // 
+            this.nudCosto.Location = new System.Drawing.Point(339, 43);
+            this.nudCosto.Name = "nudCosto";
+            this.nudCosto.Size = new System.Drawing.Size(137, 20);
+            this.nudCosto.TabIndex = 20;
+            // 
+            // nudPrecioUnit
+            // 
+            this.nudPrecioUnit.Location = new System.Drawing.Point(339, 87);
+            this.nudPrecioUnit.Name = "nudPrecioUnit";
+            this.nudPrecioUnit.Size = new System.Drawing.Size(137, 20);
+            this.nudPrecioUnit.TabIndex = 21;
+            // 
             // frmArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(493, 460);
+            this.Controls.Add(this.nudPrecioUnit);
+            this.Controls.Add(this.nudCosto);
             this.Controls.Add(this.lstArticulos);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.dateVencimiento);
-            this.Controls.Add(this.dmbPrecioUnit);
-            this.Controls.Add(this.dmbCosto);
             this.Controls.Add(this.cmbProveedor);
             this.Controls.Add(this.txtMarca);
             this.Controls.Add(this.txtId);
@@ -251,6 +251,9 @@
             this.Controls.Add(this.label1);
             this.Name = "frmArticulo";
             this.Text = "frmArticulo";
+            this.Load += new System.EventHandler(this.frmArticulo_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.nudCosto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPrecioUnit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -270,13 +273,13 @@
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.TextBox txtMarca;
         private System.Windows.Forms.ComboBox cmbProveedor;
-        private System.Windows.Forms.DomainUpDown dmbCosto;
-        private System.Windows.Forms.DomainUpDown dmbPrecioUnit;
         private System.Windows.Forms.DateTimePicker dateVencimiento;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.ListBox lstArticulos;
+        private System.Windows.Forms.NumericUpDown nudCosto;
+        private System.Windows.Forms.NumericUpDown nudPrecioUnit;
     }
 }
