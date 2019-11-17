@@ -37,7 +37,7 @@ namespace Interfaz_Aguila_Curda
         {
             txtNroFactura.Text = "";
             txtTimbrado.Text = "";
-            txtCliente.Text = "";
+            cboCliente.SelectedItem = null;
             cmbTipoPago.SelectedItem = null;
             dtpFechaFactura.Value = System.DateTime.Now;
 
@@ -49,7 +49,7 @@ namespace Interfaz_Aguila_Curda
             Factura factura = new Factura();
             factura.NroFactura = txtNroFactura.Text;
             factura.Timbrado = txtTimbrado.Text;
-            factura.Nombre = txtCliente.Text;
+            factura.Cliente = (Cliente)cboCliente.SelectedItem;
             factura.TipoPago = (TipoPago)cmbTipoPago.SelectedItem;
             factura.FechaFactura = dtpFechaFactura.Value.Date;
 
@@ -93,7 +93,7 @@ namespace Interfaz_Aguila_Curda
             {
                 txtNroFactura.Text = factura.NroFactura;
                 txtTimbrado.Text = factura.Timbrado;
-                txtCliente.Text = factura.Nombre;
+                cboCliente.SelectedItem = factura.Cliente;
 
                 cmbTipoPago.SelectedItem = factura.TipoPago;
                 dtpFechaFactura.Value = factura.FechaFactura;
@@ -101,6 +101,9 @@ namespace Interfaz_Aguila_Curda
             }
         }
 
-     
+        private void btnAgregar_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
