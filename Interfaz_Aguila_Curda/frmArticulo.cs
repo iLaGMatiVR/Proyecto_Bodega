@@ -123,5 +123,5 @@ namespace Interfaz_Aguila_Curda
             dateVencimiento.Value = a.Fecha_Venc;
             cmbProveedor.SelectedItem = a.Proveedor.NroDocumento;
         }
-    }//insertando comentarios al azar
+    }
 }
