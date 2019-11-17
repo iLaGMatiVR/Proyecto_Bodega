@@ -13,6 +13,7 @@ namespace Interfaz_Aguila_Curda
 {
     public partial class frmArticulo : Form
     {
+        public string modo;
         public frmArticulo()
         {
             InitializeComponent();
@@ -20,23 +21,25 @@ namespace Interfaz_Aguila_Curda
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            int id = 0;
-            Articulo articulo = new Articulo();
-            articulo.Descripcion = txtDescripcion.Text;
-            int.TryParse(txtId.Text, out id);
-            articulo.Marca = txtMarca.Text;
-            articulo.Precio_Unit = (double)dmbPrecioUnit.UpDownAlign;
-            articulo.Costo = (double)dmbCosto.UpDownAlign;
-            articulo.Fecha_Venc = dateVencimiento.Value;
+            if (modo == "I")
+            {
+                Articulo articulo = ObtenerArticuloFormulario();
+                Articulo.AgregarArticulo(articulo);
+            }
+            else if (modo == "E")
+            {
+                int index = lstArticulos.SelectedIndex;
+                Articulo articulo = ObtenerArticuloFormulario();
+                Articulo.ModificarArticulo(index, articulo);
+            }
 
-
-            Articulo.AgregarArticulo(articulo);
-            LimpiarFormulario();
-            ActualizarListaProveedores();
-
+            ActualizarListaArticulos();
+            LimpiarFormulario();            
         }
 
-        private void ActualizarListaProveedores()
+    
+
+        private void ActualizarListaArticulos()
         {
             lstArticulos.DataSource = null;
             lstArticulos.DataSource = Articulo.ObtenerArticulos();
@@ -48,47 +51,55 @@ namespace Interfaz_Aguila_Curda
             txtDescripcion.Text = "";
             txtMarca.Text = "";
             dateVencimiento.Value = DateTime.Now;
-            dmbCosto.Text = "0";
-            dmbPrecioUnit.Text = "0";
+            nudCosto.Text = "0";
+            nudPrecioUnit.Text = "0";
             cmbProveedor.Text = "";
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            int index = lstArticulos.SelectedIndex;
-            Articulo a = ObtenerArticuloFormulario();
-            Articulo.ModificarArticulo(a, index);
-
-
+            Articulo articulo = (Articulo)lstArticulos.SelectedItem;
+            if (articulo != null)
+            {
+                modo = "E";
+            }
+            else
+            {
+                MessageBox.Show("Por favor, Seleccione un Item");
+            }
             LimpiarFormulario();
-            ActualizarListaProveedores();
+            ActualizarListaArticulos();
         }
 
         private Articulo ObtenerArticuloFormulario()
         {          
             Articulo articulo = new Articulo();
-            articulo.Id = Convert.ToInt16(txtId.Text);
+            if (!string.IsNullOrEmpty(txtId.Text))
+            {
+                articulo.Id = Convert.ToInt32(txtId.Text);
+            }
             articulo.Descripcion = txtDescripcion.Text;
             articulo.Marca = txtMarca.Text;
-            articulo.Precio_Unit = Convert.ToDouble(dmbPrecioUnit.Text);
-            articulo.Costo = Convert.ToDouble(dmbCosto.Text);
+            articulo.Precio_Unit = Convert.ToDouble(nudPrecioUnit.Text);
+            articulo.Costo = Convert.ToDouble(nudCosto.Text);
             articulo.Fecha_Venc = dateVencimiento.Value;
-            //articulo.Proveedor = (Proveedor)cmbProveedor.Text;
+
+            articulo.Proveedor = (Proveedor)cmbProveedor.SelectedItem;
             return articulo;
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (this.lstArticulos.SelectedItems.Count == 0)
+            Articulo articulo = (Articulo)lstArticulos.SelectedItem;
+            if (articulo != null)
             {
-                MessageBox.Show("Favor seleccione una fila");
+                Articulo.EliminarArticulo(articulo);
+                ActualizarListaArticulos();
+                LimpiarFormulario();
             }
             else
             {
-                Articulo a = (Articulo)lstArticulos.SelectedItem;
-                Articulo.EliminarArticulo(a);
-                ActualizarListaProveedores();
-                LimpiarFormulario();
+                MessageBox.Show("Por favor, seleccione una fila de la lista");
             }
         }
 
@@ -99,18 +110,19 @@ namespace Interfaz_Aguila_Curda
 
         private void lstArticulos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Articulo a = (Articulo)lstArticulos.SelectedItem;
+            
+        }
 
-            if (a != null)
-            {
-                txtId.Text = Convert.ToString(a.Id);
-                txtDescripcion.Text = a.Descripcion;
-                txtMarca.Text = a.Marca;
-                dmbCosto.Text = Convert.ToString(a.Costo);
-                dmbPrecioUnit.Text = Convert.ToString(a.Precio_Unit);
-                dateVencimiento.Value = a.Fecha_Venc;
-                cmbProveedor.Text = Convert.ToString(a.Proveedor);
-            }
+        private void frmArticulo_Load(object sender, EventArgs e)
+        {
+            Articulo a = (Articulo)lstArticulos.SelectedItem;
+            txtDescripcion.Text = a.Descripcion;
+            txtMarca.Text = a.Marca;
+            nudCosto.Text = Convert.ToString(a.Costo);
+            nudPrecioUnit.Text = Convert.ToString(a.Precio_Unit);
+            dateVencimiento.Value = a.Fecha_Venc;
+            cmbProveedor.SelectedItem = a.Proveedor.NroDocumento;
+            
         }
     }
 }
