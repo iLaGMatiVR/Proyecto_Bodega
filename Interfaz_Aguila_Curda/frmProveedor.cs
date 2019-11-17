@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Proyecto_Bodega;
 
+
 namespace Interfaz_Aguila_Curda
 {
     public partial class frmProveedor : Form
@@ -28,12 +29,26 @@ namespace Interfaz_Aguila_Curda
             txtContacto.Text = "";
         }
 
-        
-       
-        private void ActualizarLista()
+
+
+		private void btnAgregar_Click_1(object sender, EventArgs e)
+		{
+			Proveedor proveedor = new Proveedor();
+			proveedor.Nombre = txtNombre.Text;
+			proveedor.NroDocumento = txtRUC.Text;
+			proveedor.Telefono = txtTelefono.Text;
+			proveedor.Direccion = txtDireccion.Text;
+			proveedor.PersonaContacto = txtContacto.Text;
+
+			Proveedor.AgregarProveedor(proveedor);
+			LimpiarFormulario();
+			ActualizarListaProveedores();
+		}
+
+		private void ActualizarListaProveedores()
         {
             lstProveedor.DataSource = null;
-            lstProveedor.DataSource = Proveedor.ObtenerProveedor();
+            lstProveedor.DataSource = Proveedor.ObtenerProveedores();
         }
 
 
@@ -42,12 +57,13 @@ namespace Interfaz_Aguila_Curda
         private Proveedor ObtenerDatosFormulario()
         {
             Proveedor proveedor = new Proveedor();
-            proveedor.CodProveedor = txtCodProveedor.Text;
+            proveedor.CodProveedor = Convert.ToInt16(txtCodProveedor.Text);
             proveedor.Nombre = txtNombre.Text;
-            proveedor.Telefono = txtTelefono.Text;
+			proveedor.NroDocumento = txtRUC.Text;
+			proveedor.Telefono = txtTelefono.Text;
             proveedor.Direccion = txtDireccion.Text;
             proveedor.PersonaContacto = txtContacto.Text;
-            proveedor.NroDocumento = txtRUC.Text;
+            
 
 
             return proveedor;
@@ -59,7 +75,7 @@ namespace Interfaz_Aguila_Curda
             Proveedor proveedor = (Proveedor)lstProveedor.SelectedItem;
             if (proveedor != null)
             {
-                txtCodProveedor.Text = proveedor.CodProveedor;
+                txtCodProveedor.Text = Convert.ToString(proveedor.CodProveedor);
                 txtRUC.Text = proveedor.NroDocumento;
                 txtNombre.Text = proveedor.Nombre;
                 txtTelefono.Text = proveedor.Telefono;
@@ -73,13 +89,13 @@ namespace Interfaz_Aguila_Curda
         {
             if (this.lstProveedor.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Favor seleccione una fila para eliminar");
+                MessageBox.Show("Favor seleccione una fila");
             }
             else
             {
-                Proveedor pro = (Proveedor)lstProveedor.SelectedItem;
-                Proveedor.EliminarProveedor(pro);
-                ActualizarLista();
+                Proveedor p = (Proveedor)lstProveedor.SelectedItem;
+                Proveedor.EliminarProveedor(p);
+                ActualizarListaProveedores();
                 LimpiarFormulario();
             }
         }
@@ -93,9 +109,12 @@ namespace Interfaz_Aguila_Curda
         {
             if (lstProveedor.SelectedItems.Count > 0)
             {
-                int index = lstProveedor.SelectedIndex;
-                Proveedor.listaProveedor[index] = ObtenerDatosFormulario();
-                ActualizarLista();
+				//int index = lstProveedor.SelectedIndex;
+				//Proveedor.listaProveedor[index] = ObtenerDatosFormulario();
+				int index = lstProveedor.SelectedIndex;
+				Proveedor p = ObtenerDatosFormulario();
+				Proveedor.ModificarProveedor(index, p);
+				ActualizarListaProveedores();
 
             }
             else
@@ -104,13 +123,9 @@ namespace Interfaz_Aguila_Curda
             }
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
-        {
-            var pro = ObtenerDatosFormulario();
-            Proveedor.AgregarProveedor(pro);
-            ActualizarLista();
-            LimpiarFormulario();
-            txtCodProveedor.Focus();
-        }
-    }
+		private void frmProveedor_Load(object sender, EventArgs e)
+		{
+			ActualizarListaProveedores();
+		}
+	}
 }

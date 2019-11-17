@@ -81,7 +81,7 @@ namespace Proyecto_Bodega
 			}
 
 		}
-    public static void ModificarCliente(Cliente c, int indice)
+    public static void ModificarCliente(int index, Cliente c)
     {
 			//Cliente.listaCliente[indice] = cli;
 

@@ -78,7 +78,7 @@ namespace Proyecto_Bodega
 				cmd.ExecuteNonQuery();
 			}
 		}
-    public static void ModificarProveedor(Proveedor p, int indice)
+    public static void ModificarProveedor(int index, Proveedor p)
     {
 			//Proveedor.listaProveedor[indice] = pro;
 
