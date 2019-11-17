@@ -57,7 +57,13 @@ namespace Interfaz_Aguila_Curda
         private Proveedor ObtenerDatosFormulario()
         {
             Proveedor proveedor = new Proveedor();
-            proveedor.CodProveedor = Convert.ToInt16(txtCodProveedor.Text);
+
+
+			if (!string.IsNullOrEmpty(txtCodProveedor.Text))
+			{
+				proveedor.CodProveedor = Convert.ToInt16(txtCodProveedor.Text);
+			}
+			
             proveedor.Nombre = txtNombre.Text;
 			proveedor.NroDocumento = txtRUC.Text;
 			proveedor.Telefono = txtTelefono.Text;

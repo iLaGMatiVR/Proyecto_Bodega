@@ -96,6 +96,7 @@
 			this.txtCodCliente.Location = new System.Drawing.Point(216, 50);
 			this.txtCodCliente.Margin = new System.Windows.Forms.Padding(4);
 			this.txtCodCliente.Name = "txtCodCliente";
+			this.txtCodCliente.ReadOnly = true;
 			this.txtCodCliente.Size = new System.Drawing.Size(132, 22);
 			this.txtCodCliente.TabIndex = 80;
 			// 

@@ -39,9 +39,12 @@ namespace Interfaz_Aguila_Curda
         private Cliente ObtenerDatosFormulario()
         {
             Cliente cliente = new Cliente();
+			if (!string.IsNullOrEmpty(txtCodCliente.Text))
+			{
+				cliente.CodCliente = Convert.ToInt16(txtCodCliente.Text);
+			}
 
-
-            cliente.CodCliente = Convert.ToInt16(txtCodCliente.Text);
+			
             cliente.Nombre = txtNombre.Text;
             cliente.Telefono = txtTelefono.Text;
             cliente.NroDocumento = txtCI.Text;

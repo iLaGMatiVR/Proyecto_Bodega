@@ -114,6 +114,7 @@
 			this.txtCodProveedor.Location = new System.Drawing.Point(225, 52);
 			this.txtCodProveedor.Margin = new System.Windows.Forms.Padding(4);
 			this.txtCodProveedor.Name = "txtCodProveedor";
+			this.txtCodProveedor.ReadOnly = true;
 			this.txtCodProveedor.Size = new System.Drawing.Size(132, 22);
 			this.txtCodProveedor.TabIndex = 74;
 			// 

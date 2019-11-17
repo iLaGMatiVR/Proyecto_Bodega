@@ -28,7 +28,7 @@ namespace Proyecto_Bodega
 
 			{
 				con.Open(); //Abrimos la conex con la BD
-				string textoCmd = "insert into Cliente (Nombre, NroDocumento, Telefono, Direccion, Sexo, FechaNacimiento) " +
+				string textoCmd = "insert into Cliente (Nombre, NroDocumento, Telefono, Direccion, Sexo) " +
 					"VALUES (@Nombre, @NroDocumento, @Telefono, @Direccion, @Sexo)";
 				SqlCommand cmd = new SqlCommand(textoCmd, con);
 
