@@ -122,7 +122,6 @@ namespace Interfaz_Aguila_Curda
             nudPrecioUnit.Text = Convert.ToString(a.Precio_Unit);
             dateVencimiento.Value = a.Fecha_Venc;
             cmbProveedor.SelectedItem = a.Proveedor.NroDocumento;
-            
         }
     }
 }
