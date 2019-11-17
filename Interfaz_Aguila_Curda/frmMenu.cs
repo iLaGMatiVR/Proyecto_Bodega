@@ -33,5 +33,11 @@ namespace Interfaz_Aguila_Curda
 		{
 			this.Close();
 		}
-	}
+
+        private void facturaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmFacturas form = new frmFacturas();
+            form.Show();
+        }
+    }
 }
