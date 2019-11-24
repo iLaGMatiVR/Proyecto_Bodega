@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,86 +16,125 @@ namespace Interfaz_Aguila_Curda
 
     public partial class frmDevolucion : Form
     {
-        Devolucion devolucion;
-        Articulo articulo;
+
+
         public frmDevolucion()
         {
             InitializeComponent();
         }
 
+
+            
+
+
+        private void ActualizarListaDevolucion()
+        {
+            lstDevolucion.DataSource = null;
+            lstDevolucion.DataSource = Devolucion.ObtenerDevoluciones();
+        }
+
+        private void LimpiarFormulario()
+
+        {
+            txtIDDevolucion.Text = "";
+            txtMotivoDevolucion.Text = "";
+            dtpFechaDevolucion.Value = System.DateTime.Now;
+            cmbDescripcion.SelectedItem = null;
+
+
+        }
+
+        
+
+        private Devolucion ObtenerDevolucionFormulario()
+        {
+            Devolucion devolucion = new Devolucion();
+            if (!string.IsNullOrEmpty(txtIDDevolucion.Text))
+            {
+                devolucion.Id = Convert.ToInt32(txtIDDevolucion.Text);
+            }
+
+            devolucion.Motivo_Devolucion = txtMotivoDevolucion.Text;
+            devolucion.FechaDevol = dtpFechaDevolucion.Value.Date;
+
+            devolucion.Articulo = (Articulo)cmbDescripcion.SelectedItem;
+
+            return devolucion;
+        }
+
+
+
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            Devolucion dv = new Devolucion();
-            dv.Motivo_Devolucion = txtMotivoDevolucion.Text;
-            dv.Descripcion = (Articulo)cmbDescripcion.SelectedItem;
-            Devolucion.AgregarDevolucion(dv);
-            ActualizarDataGrid();
+            Devolucion devolucion = new Devolucion();
+            devolucion.Motivo_Devolucion = txtMotivoDevolucion.Text;
+            devolucion.FechaDevol = dtpFechaDevolucion.Value.Date;
+            devolucion.Articulo = (Articulo)cmbDescripcion.SelectedItem;
 
-            Limpiar();
-        }
+            Devolucion.AgregarDevolucion(devolucion);
 
-        private void Limpiar()
-        {
-            txtMotivoDevolucion.Text = "";
-            cmbDescripcion.SelectedItem = null;
-        }
-
-        private void ActualizarDataGrid()
-        {
-            dtgDetalleDevolucion.DataSource = null;
-            dtgDetalleDevolucion.DataSource = Devolucion.ObtenerDevoluciones();
+            LimpiarFormulario();
+            ActualizarListaDevolucion();
         }
 
         private void frmDevolucion_Load(object sender, EventArgs e)
         {
-            dtgDetalleDevolucion.AutoGenerateColumns = true;
+            ActualizarListaDevolucion();
             cmbDescripcion.DataSource = Articulo.ObtenerArticulos();
             cmbDescripcion.SelectedItem = null;
-            devolucion = new Devolucion();
+        }
+
+        private void btnEditar_Click_1(object sender, EventArgs e)
+        {
+            Devolucion devolucion = (Devolucion)lstDevolucion.SelectedItem;
+            if (lstDevolucion.SelectedItems.Count > 0)
+            {
+
+                int index = lstDevolucion.SelectedIndex;
+                Devolucion d = ObtenerDevolucionFormulario();
+                Devolucion.EditarDevolucion(index, d);
+                ActualizarListaDevolucion();
+
+            }
+            else
+            {
+                MessageBox.Show("Favor seleccionar de la fila para modificar");
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            Devolucion dv = (Devolucion)dtgDetalleDevolucion.CurrentRow.DataBoundItem;
-            Devolucion.EliminarDevolucion(dv);
-            ActualizarDataGrid();
+            Devolucion devolucion = (Devolucion)lstDevolucion.SelectedItem;
+            if (this.lstDevolucion.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Favor seleccionar una fila de la lista");
+            }
+            else
+            {
+
+                Devolucion.EliminarDevolucion(devolucion);
+                ActualizarListaDevolucion();
+                LimpiarFormulario();
+            }
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void btnLimpiar_Click_1(object sender, EventArgs e)
         {
-            devolucion.articulo = (Articulo)cmbDescripcion.SelectedItem;
-
-            Devolucion.AgregarDevolucion(devolucion);
-            MessageBox.Show("El pedido ha sido guardado con éxito");
-            Limpiar();
-            dtgDetalleDevolucion.DataSource = null;
-            cmbDescripcion.SelectedItem = null;
-            devolucion = new Devolucion();
+            LimpiarFormulario();
         }
 
-        private void lblDescripcionDelProducto_Click(object sender, EventArgs e)
+        private void lstDevolucion_Click_1(object sender, EventArgs e)
         {
+            Devolucion devolucion = (Devolucion)lstDevolucion.SelectedItem;
+            if (devolucion != null)
+            {
+                txtIDDevolucion.Text = Convert.ToString(devolucion.Id);
+                txtMotivoDevolucion.Text = devolucion.Motivo_Devolucion;
+                dtpFechaDevolucion.Value = devolucion.FechaDevol;
+                cmbDescripcion.SelectedItem = devolucion.Articulo;
 
-        }
-
-        private void cmbDescripcion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtmFechaDevolucion_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblFechaDevolucion_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblMotivoDevolucion_Click(object sender, EventArgs e)
-        {
-
+            }
         }
     }
+
 }

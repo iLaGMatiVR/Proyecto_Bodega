@@ -31,21 +31,21 @@ namespace Interfaz_Aguila_Curda
 
 
 
-		private void btnAgregar_Click_1(object sender, EventArgs e)
-		{
-			Proveedor proveedor = new Proveedor();
-			proveedor.Nombre = txtNombre.Text;
-			proveedor.NroDocumento = txtRUC.Text;
-			proveedor.Telefono = txtTelefono.Text;
-			proveedor.Direccion = txtDireccion.Text;
-			proveedor.PersonaContacto = txtContacto.Text;
+        private void btnAgregar_Click_1(object sender, EventArgs e)
+        {
+            Proveedor proveedor = new Proveedor();
+            proveedor.Nombre = txtNombre.Text;
+            proveedor.NroDocumento = txtRUC.Text;
+            proveedor.Telefono = txtTelefono.Text;
+            proveedor.Direccion = txtDireccion.Text;
+            proveedor.PersonaContacto = txtContacto.Text;
 
-			Proveedor.AgregarProveedor(proveedor);
-			LimpiarFormulario();
-			ActualizarListaProveedores();
-		}
+            Proveedor.AgregarProveedor(proveedor);
+            LimpiarFormulario();
+            ActualizarListaProveedores();
+        }
 
-		private void ActualizarListaProveedores()
+        private void ActualizarListaProveedores()
         {
             lstProveedor.DataSource = null;
             lstProveedor.DataSource = Proveedor.ObtenerProveedores();
@@ -59,23 +59,23 @@ namespace Interfaz_Aguila_Curda
             Proveedor proveedor = new Proveedor();
 
 
-			if (!string.IsNullOrEmpty(txtCodProveedor.Text))
-			{
-				proveedor.CodProveedor = Convert.ToInt16(txtCodProveedor.Text);
-			}
-			
+            if (!string.IsNullOrEmpty(txtCodProveedor.Text))
+            {
+                proveedor.CodProveedor = Convert.ToInt16(txtCodProveedor.Text);
+            }
+
             proveedor.Nombre = txtNombre.Text;
-			proveedor.NroDocumento = txtRUC.Text;
-			proveedor.Telefono = txtTelefono.Text;
+            proveedor.NroDocumento = txtRUC.Text;
+            proveedor.Telefono = txtTelefono.Text;
             proveedor.Direccion = txtDireccion.Text;
             proveedor.PersonaContacto = txtContacto.Text;
-            
+
 
 
             return proveedor;
         }
 
-       
+
         private void lstProveedor_Click(object sender, EventArgs e)
         {
             Proveedor proveedor = (Proveedor)lstProveedor.SelectedItem;
@@ -115,12 +115,12 @@ namespace Interfaz_Aguila_Curda
         {
             if (lstProveedor.SelectedItems.Count > 0)
             {
-				//int index = lstProveedor.SelectedIndex;
-				//Proveedor.listaProveedor[index] = ObtenerDatosFormulario();
-				int index = lstProveedor.SelectedIndex;
-				Proveedor p = ObtenerDatosFormulario();
-				Proveedor.ModificarProveedor(index, p);
-				ActualizarListaProveedores();
+                //int index = lstProveedor.SelectedIndex;
+                //Proveedor.listaProveedor[index] = ObtenerDatosFormulario();
+                int index = lstProveedor.SelectedIndex;
+                Proveedor p = ObtenerDatosFormulario();
+                Proveedor.ModificarProveedor(index, p);
+                ActualizarListaProveedores();
 
             }
             else
@@ -129,9 +129,9 @@ namespace Interfaz_Aguila_Curda
             }
         }
 
-		private void frmProveedor_Load(object sender, EventArgs e)
-		{
-			ActualizarListaProveedores();
-		}
-	}
+        private void frmProveedor_Load(object sender, EventArgs e)
+        {
+            ActualizarListaProveedores();
+        }
+    }
 }

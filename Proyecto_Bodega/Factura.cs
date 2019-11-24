@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using Proyecto_Bodega;
 
 namespace Proyecto_Bodega
 {
@@ -23,7 +24,12 @@ namespace Proyecto_Bodega
         public TipoPago TipoPago { get; set; }
         public DateTime FechaFactura { get; set; }
 
+        public Articulo articulo { get; set; }
+
+        public List<DetalleFactura> detalle_factura = new List<DetalleFactura>();
+
         public static List<Factura> listaFactura = new List<Factura>();
+
 
         public static void AgregarFactura(Factura fac)
         {
@@ -99,7 +105,7 @@ namespace Proyecto_Bodega
                     factura.NroFactura = elLectorDeDatos.GetString(1);
                     factura.Timbrado = elLectorDeDatos.GetString(2);
                     factura.Cliente = Cliente.ObtenerCliente(elLectorDeDatos.GetInt32(3));
-                    factura.TipoPago = (TipoPago)elLectorDeDatos.GetInt16(4);
+                    factura.TipoPago = (TipoPago)elLectorDeDatos.GetInt32(4);
                     factura.FechaFactura = elLectorDeDatos.GetDateTime(5);
                     listaFactura.Add(factura);
                 }
@@ -108,21 +114,24 @@ namespace Proyecto_Bodega
 
             }
         }
+
+
+
         private SqlCommand ObtenerParametros(SqlCommand cmd, Boolean id = false)
         {
             //PARAMETROS
             SqlParameter p1 = new SqlParameter("@NroFactura", this.NroFactura);
             SqlParameter p2 = new SqlParameter("@Timbrado", this.Timbrado);
-            SqlParameter p3 = new SqlParameter("@Cliente", this.Cliente);
+            SqlParameter p3 = new SqlParameter("@Cliente", this.Cliente.CodCliente);
             SqlParameter p4 = new SqlParameter("@TipoPago", this.TipoPago);
             SqlParameter p5 = new SqlParameter("@FechaFactura", this.FechaFactura);
 
             //Le decimos a los parametros de que tipo de datos son
             p1.SqlDbType = SqlDbType.VarChar;
             p2.SqlDbType = SqlDbType.VarChar;
-            p3.SqlDbType = SqlDbType.VarChar;
-            p4.SqlDbType = SqlDbType.VarChar;
-            p5.SqlDbType = SqlDbType.VarChar;
+            p3.SqlDbType = SqlDbType.Int;
+            p4.SqlDbType = SqlDbType.Int;
+            p5.SqlDbType = SqlDbType.DateTime;
 
             //Agragamos los parametros al command
             cmd.Parameters.Add(p1);

@@ -21,23 +21,35 @@ namespace Interfaz_Aguila_Curda
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (modo == "I")
+            modo = "I";
+            Articulo articulos = (Articulo)lstArticulos.SelectedItem;
+
+
+            Articulo articulo = ObtenerArticuloFormulario();
+            Articulo.AgregarArticulo(articulo);
+
+            /*if (articulos == null)
             {
+
                 Articulo articulo = ObtenerArticuloFormulario();
                 Articulo.AgregarArticulo(articulo);
             }
-            else if (modo == "E")
+            else if (articulos != null)
             {
+                modo = "E";
                 int index = lstArticulos.SelectedIndex;
                 Articulo articulo = ObtenerArticuloFormulario();
                 Articulo.ModificarArticulo(index, articulo);
             }
+            */
+
 
             ActualizarListaArticulos();
-            LimpiarFormulario();            
+            LimpiarFormulario();
+            txtDescripcion.Focus();
         }
 
-    
+
 
         private void ActualizarListaArticulos()
         {
@@ -58,10 +70,14 @@ namespace Interfaz_Aguila_Curda
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
+
             Articulo articulo = (Articulo)lstArticulos.SelectedItem;
             if (articulo != null)
             {
                 modo = "E";
+                int index = lstArticulos.SelectedIndex;
+                Articulo articulos = ObtenerArticuloFormulario();
+                Articulo.ModificarArticulo(index, articulos);
             }
             else
             {
@@ -72,8 +88,10 @@ namespace Interfaz_Aguila_Curda
         }
 
         private Articulo ObtenerArticuloFormulario()
-        {          
+        {
             Articulo articulo = new Articulo();
+
+
             if (!string.IsNullOrEmpty(txtId.Text))
             {
                 articulo.Id = Convert.ToInt32(txtId.Text);
@@ -85,6 +103,7 @@ namespace Interfaz_Aguila_Curda
             articulo.Fecha_Venc = dateVencimiento.Value;
 
             articulo.Proveedor = (Proveedor)cmbProveedor.SelectedItem;
+
             return articulo;
         }
 
@@ -108,20 +127,31 @@ namespace Interfaz_Aguila_Curda
             LimpiarFormulario();
         }
 
-        private void lstArticulos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void frmArticulo_Load(object sender, EventArgs e)
         {
-            Articulo a = (Articulo)lstArticulos.SelectedItem;
-            txtDescripcion.Text = a.Descripcion;
-            txtMarca.Text = a.Marca;
-            nudCosto.Text = Convert.ToString(a.Costo);
-            nudPrecioUnit.Text = Convert.ToString(a.Precio_Unit);
-            dateVencimiento.Value = a.Fecha_Venc;
-            cmbProveedor.SelectedItem = a.Proveedor.NroDocumento;
+            ActualizarListaArticulos();
+            cmbProveedor.DataSource = Proveedor.ObtenerProveedores();
+            //cmbProveedor.SelectedIndex = 1;
+            cmbProveedor.SelectedItem = null;
         }
-    }//asd
+
+       
+
+        private void lstArticulos_Click_1(object sender, EventArgs e)
+        {
+            Articulo articulo = (Articulo)lstArticulos.SelectedItem;
+            if (articulo != null)
+            {
+                txtId.Text = Convert.ToString(articulo.Id);
+                txtDescripcion.Text = articulo.Descripcion;
+                txtMarca.Text = articulo.Marca;
+                cmbProveedor.SelectedItem = articulo.Proveedor;
+                dateVencimiento.Value = articulo.Fecha_Venc;
+                nudCosto.Value = Convert.ToInt32(articulo.Costo);
+                nudPrecioUnit.Value = Convert.ToInt32(articulo.Precio_Unit);
+
+
+            }
+        }
+    }
 }

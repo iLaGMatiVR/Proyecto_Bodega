@@ -18,12 +18,12 @@ namespace Proyecto_Bodega
         public double Precio_Unit { set; get; }
         public DateTime Fecha_Venc { set; get; }
         public Proveedor Proveedor { set; get; }
-        public static List<Proveedor> ListaProveedor = new List<Proveedor>();
+
 
         public Articulo articulo { set; get; }
         public static List<Articulo> ListaArticulos = new List<Articulo>();
 
-       
+
         //metodo para obtener articulo
         public static List<Articulo> ObtenerArticulos()
         {
@@ -48,7 +48,7 @@ namespace Proyecto_Bodega
                     articulo.Costo = elLectorDeDatos.GetDouble(3);
                     articulo.Precio_Unit = elLectorDeDatos.GetDouble(4);
                     articulo.Proveedor = Proveedor.ObtenerProveedor(elLectorDeDatos.GetInt32(5));
-                    articulo.Fecha_Venc = elLectorDeDatos.GetDateTime(60);
+                    articulo.Fecha_Venc = elLectorDeDatos.GetDateTime(6);
 
                     ListaArticulos.Add(articulo);
                 }
@@ -85,9 +85,10 @@ namespace Proyecto_Bodega
 
             {
                 con.Open();
-                string textoCmd = "INSERT INTO Articulo (Descripcion, Marca, Costo, Precio_Unit, Proveedor, Fecha_Venc)VALUES (@Descripcion, @Marca, @Costo, @Precio_Unitario, @Proveedor, @Vencimiento)";
+                string textoCmd = "INSERT INTO Articulo (Descripcion, Marca, Costo, Precio_Unitario, Proveedor, Vencimiento) VALUES (@Descripcion, @Marca, @Costo, @Precio_Unitario, @Proveedor, @Vencimiento)";
                 SqlCommand cmd = new SqlCommand(textoCmd, con);
                 cmd = a.ObtenerParametros(cmd);
+
                 cmd.ExecuteNonQuery();
             }
         }
@@ -98,16 +99,16 @@ namespace Proyecto_Bodega
             SqlParameter p2 = new SqlParameter("@Marca", this.Marca);
             SqlParameter p3 = new SqlParameter("@Costo", this.Costo);
             SqlParameter p4 = new SqlParameter("@Precio_Unitario", this.Precio_Unit);
-            SqlParameter p5 = new SqlParameter("@Proveedor", this.Proveedor.NroDocumento);//es el id del proveedor para obtener dicho valor
-            SqlParameter p6 = new SqlParameter("@Vencimiento", this.Fecha_Venc); 
-            
+            SqlParameter p5 = new SqlParameter("@Proveedor", this.Proveedor.CodProveedor);//es el id del proveedor para obtener dicho valor
+            SqlParameter p6 = new SqlParameter("@Vencimiento", this.Fecha_Venc);
+
             p1.SqlDbType = SqlDbType.VarChar;
             p2.SqlDbType = SqlDbType.VarChar;
             p3.SqlDbType = SqlDbType.Float;
             p4.SqlDbType = SqlDbType.Float;
-            p5.SqlDbType = SqlDbType.VarChar;
-            p6.SqlDbType = SqlDbType.Date;
-            
+            p5.SqlDbType = SqlDbType.Int;
+            p6.SqlDbType = SqlDbType.DateTime;
+
 
             cmd.Parameters.Add(p1);
             cmd.Parameters.Add(p2);
@@ -115,7 +116,7 @@ namespace Proyecto_Bodega
             cmd.Parameters.Add(p4);
             cmd.Parameters.Add(p5);
             cmd.Parameters.Add(p6);
-            
+
             if (id == true)
             {
                 cmd = ObtenerParametrosId(cmd);
@@ -125,9 +126,9 @@ namespace Proyecto_Bodega
 
         private SqlCommand ObtenerParametrosId(SqlCommand cmd)
         {
-            SqlParameter p9 = new SqlParameter("@Id_Articulo", this.Id);
-            p9.SqlDbType = SqlDbType.Int;
-            cmd.Parameters.Add(p9);
+            SqlParameter p7 = new SqlParameter("@Id_Articulo", this.Id);
+            p7.SqlDbType = SqlDbType.Int;
+            cmd.Parameters.Add(p7);
             return cmd;
         }
 
@@ -138,7 +139,7 @@ namespace Proyecto_Bodega
 
             {
                 con.Open();
-                string SENTENCIA_SQL = "delete from Articulo where Id = @Id_Articulo";
+                string SENTENCIA_SQL = "delete from Articulo where Id_Articulo = @Id_Articulo";
 
                 SqlCommand cmd = new SqlCommand(SENTENCIA_SQL, con);
                 SqlParameter p1 = new SqlParameter("@Id_Articulo", a.Id);
@@ -156,7 +157,7 @@ namespace Proyecto_Bodega
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
             {
                 con.Open();
-                string textoCMD = "UPDATE Articulo SET Descripcion = @Descripcion, Marca = @Marca, Costo = @Costo, Precio_Unit = @Precio_Unitario, Proveedor = @Proveedor, Fecha_Venc = @Vencimiento where Id = @Id_Articulo";
+                string textoCMD = "UPDATE Articulo SET Descripcion = @Descripcion, Marca = @Marca, Costo = @Costo, Precio_Unitario = @Precio_Unitario, Proveedor = @Proveedor, Vencimiento = @Vencimiento where Id_Articulo = @Id_Articulo";
 
                 SqlCommand cmd = new SqlCommand(textoCMD, con);
                 cmd = articulo.ObtenerParametros(cmd, true);
@@ -171,3 +172,4 @@ namespace Proyecto_Bodega
         }
     }
 }
+

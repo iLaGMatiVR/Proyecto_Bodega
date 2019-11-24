@@ -44,7 +44,7 @@ namespace Proyecto_Bodega
 
         public static void EliminarCompra(Compra c)
         {
-            
+
 
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
 
@@ -63,7 +63,7 @@ namespace Proyecto_Bodega
         }
         public static void ModificarCompra(Compra c, int indice)
         {
-            
+
 
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
             {
@@ -80,7 +80,7 @@ namespace Proyecto_Bodega
 
         public static List<Compra> ObtenerCompra()
         {
-            
+
             Compra compra;
             listaCompra.Clear();
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
@@ -114,7 +114,7 @@ namespace Proyecto_Bodega
             //PARAMETROS
             SqlParameter p1 = new SqlParameter("@NroFactura", this.NroFactura);
             SqlParameter p3 = new SqlParameter("@Proveedor", this.Proveedor);
-            SqlParameter p2 = new SqlParameter("@Timbrado", this.Direccion);           
+            SqlParameter p2 = new SqlParameter("@Timbrado", this.Direccion);
             SqlParameter p4 = new SqlParameter("@MedioPago", this.MedioPago);
             SqlParameter p5 = new SqlParameter("@FechaCompra", this.FechaCompra);
 

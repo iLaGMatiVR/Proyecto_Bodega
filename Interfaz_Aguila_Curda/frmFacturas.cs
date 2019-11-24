@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Proyecto_Bodega;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,40 +8,68 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Proyecto_Bodega;
 
 namespace Interfaz_Aguila_Curda
 {
     public partial class frmFacturas : Form
     {
+
+        Factura factura;
         public frmFacturas()
         {
             InitializeComponent();
         }
 
+        private void frmFacturas_Load(object sender, EventArgs e)
+        {
+
+            dgvFactura.AutoGenerateColumns = true;
+            cmbTipoPago.DataSource = Enum.GetValues(typeof(TipoPago));
+            cboCliente.DataSource = Cliente.ObtenerClientes();
+            cboArticulo.DataSource = Articulo.ObtenerArticulos();
+            cboCliente.SelectedItem = null;
+            cmbTipoPago.SelectedItem = null;
+            cboArticulo.SelectedItem = null;
+            gbxDetalle.Enabled = false;
+            gbxCabecera.Enabled = true;
+
+
+            factura = new Factura();
+
+        }
+
+        private void btnHabilitarDetalle_Click(object sender, EventArgs e)
+        {
+            gbxDetalle.Enabled = true;
+            gbxCabecera.Enabled = false;
+
+            cboArticulo.Focus();
+        }
+
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            var p = ObtenerDatosFormulario();
-            Factura.AgregarFactura(p);
-            ActualizarLista();
-            LimpiarFormulario();
-            txtNroFactura.Focus();
+
+
+
+
+
         }
 
         private void ActualizarLista()
         {
-            lstFactura.DataSource = null;
-            lstFactura.DataSource = Factura.ObtenerFactura();
+
+            dgvFactura.DataSource = Factura.ObtenerFactura();
+            dgvFactura.DataSource = null;
         }
 
         private void LimpiarFormulario()
         {
             txtNroFactura.Text = "";
             txtTimbrado.Text = "";
-            cboCliente.SelectedItem = null;
+            cboCliente.SelectedItem = 0;
             cmbTipoPago.SelectedItem = null;
             dtpFechaFactura.Value = System.DateTime.Now;
-
+            cboArticulo.SelectedItem = 0;
         }
 
 
@@ -52,16 +81,19 @@ namespace Interfaz_Aguila_Curda
             factura.Cliente = (Cliente)cboCliente.SelectedItem;
             factura.TipoPago = (TipoPago)cmbTipoPago.SelectedItem;
             factura.FechaFactura = dtpFechaFactura.Value.Date;
+            factura.articulo = (Articulo)cboArticulo.SelectedItem;
 
             return factura;
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
+        /*private void btnModificar_Click_1(object sender, EventArgs e)
         {
             if (lstFactura.SelectedItems.Count > 0)
             {
-                int index = lstFactura.SelectedIndex;
-                Factura.listaFactura[index] = ObtenerDatosFormulario();
+                
+                int indice = lstFactura.SelectedIndex;
+                Factura f = ObtenerDatosFormulario();
+                Factura.ModificarFactura(f, indice);
                 ActualizarLista();
 
             }
@@ -69,11 +101,13 @@ namespace Interfaz_Aguila_Curda
             {
                 MessageBox.Show("Favor seleccionar de la fila para modificar");
             }
-        }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+
+        }*/
+
+        private void btnEliminar_Click_1(object sender, EventArgs e)
         {
-            if (this.lstFactura.SelectedItems.Count == 0)
+            /*if (this.lstFactura.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Favor seleccione una fila para eliminar");
             }
@@ -83,27 +117,19 @@ namespace Interfaz_Aguila_Curda
                 Factura.EliminarFactura(f);
                 ActualizarLista();
                 LimpiarFormulario();
-            }
+            }*/
+
+
+            DetalleFactura f = (DetalleFactura)dgvFactura.CurrentRow.DataBoundItem;
+            factura.detalle_factura.Remove(f);
+            ActualizarLista();
         }
 
-        private void lstFactura_Click(object sender, EventArgs e)
-        {
-            Factura factura = (Factura)lstFactura.SelectedItem;
-            if (factura != null)
-            {
-                txtNroFactura.Text = factura.NroFactura;
-                txtTimbrado.Text = factura.Timbrado;
-                cboCliente.SelectedItem = factura.Cliente;
 
-                cmbTipoPago.SelectedItem = factura.TipoPago;
-                dtpFechaFactura.Value = factura.FechaFactura;
 
-            }
-        }
 
-        private void btnAgregar_Click_1(object sender, EventArgs e)
-        {
 
-        }
+
+
     }
 }

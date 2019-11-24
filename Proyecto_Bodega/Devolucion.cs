@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using Proyecto_Bodega;
 
 namespace Proyecto_Bodega
 {
@@ -12,8 +13,8 @@ namespace Proyecto_Bodega
     {
         public int Id { set; get; }
         public string Motivo_Devolucion { get; set; }
-        public Articulo Descripcion { set; get; }
-        public DateTime FechaDevolucion { get; set; }
+        public Articulo Articulo { set; get; }
+        public DateTime FechaDevol { get; set; }
 
         public static List<Devolucion> listaDevoluciones = new List<Devolucion>();
 
@@ -23,7 +24,7 @@ namespace Proyecto_Bodega
 
             {
                 con.Open();
-                string textoCmd = "INSERT INTO Devolucion (Motivo_Devolucion, Descripcion, FechaDevol)VALUES (@Motivo_Devolucion, @Descripcion,@FechaDevolucion)";
+                string textoCmd = "insert into Devolucion (Motivo_Devolucion, Articulo, FechaDevol) VALUES (@Motivo_Devolucion, @Articulo, @FechaDevol)";
                 SqlCommand cmd = new SqlCommand(textoCmd, con);
                 cmd = d.ObtenerParametros(cmd);
                 cmd.ExecuteNonQuery();
@@ -46,9 +47,20 @@ namespace Proyecto_Bodega
                 con.Close();
             }
         }
+        public static void EditarDevolucion(int index, Devolucion d)
+        {
 
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+            {
+                con.Open();
+                string textoCMD = "UPDATE Devolucion SET Motivo_Devolucion = @Motivo_Devolucion, Articulo = @Articulo, FechaDevol= @FechaDevol where Id = @Id";
 
+                SqlCommand cmd = new SqlCommand(textoCMD, con);
+                cmd = d.ObtenerParametros(cmd, true);
 
+                cmd.ExecuteNonQuery();
+            }
+        }
 
         public static List<Devolucion> ObtenerDevoluciones()
         {
@@ -64,13 +76,14 @@ namespace Proyecto_Bodega
 
                 SqlDataReader elLectorDeDatos = cmd.ExecuteReader();
 
+
                 while (elLectorDeDatos.Read())
                 {
                     devolucion = new Devolucion();
                     devolucion.Id = elLectorDeDatos.GetInt32(0);
                     devolucion.Motivo_Devolucion = elLectorDeDatos.GetString(1);
-                    devolucion.articulo = Articulo.ObtenerArticulos(elLectorDeDatos.GetInt32(2));
-                    devolucion.FechaDevolucion = elLectorDeDatos.GetDateTime(3);
+                    devolucion.Articulo = Articulo.ObtenerArticulo(elLectorDeDatos.GetInt32(2));
+                    devolucion.FechaDevol = elLectorDeDatos.GetDateTime(3);
 
                     listaDevoluciones.Add(devolucion);
 
@@ -92,9 +105,9 @@ namespace Proyecto_Bodega
         private SqlCommand ObtenerParametros(SqlCommand cmd, Boolean id = false)
 
         {
-            SqlParameter p1 = new SqlParameter("@Motivo", this.Motivo_Devolucion);
-            SqlParameter p2 = new SqlParameter("@Descripcion", this.Descripcion.Id);
-            SqlParameter p3 = new SqlParameter("@FechaDevol", this.FechaDevolucion);
+            SqlParameter p1 = new SqlParameter("@Motivo_Devolucion", this.Motivo_Devolucion);
+            SqlParameter p2 = new SqlParameter("@Articulo", this.Articulo.Id);
+            SqlParameter p3 = new SqlParameter("@FechaDevol", this.FechaDevol);
 
             p1.SqlDbType = SqlDbType.VarChar;
             p2.SqlDbType = SqlDbType.Int;
@@ -116,7 +129,7 @@ namespace Proyecto_Bodega
         private SqlCommand ObtenerParametrosId(SqlCommand cmd)
         {
 
-            SqlParameter p4 = new SqlParameter("@id", this.Id);
+            SqlParameter p4 = new SqlParameter("@Id", this.Id);
             p4.SqlDbType = SqlDbType.Int;
             cmd.Parameters.Add(p4);
             return cmd;

@@ -7,45 +7,45 @@ using System.Data;
 using System.Data.SqlClient;
 namespace Proyecto_Bodega
 {
-  public  class DetalleFactura
+    public class DetalleFactura
     {
-        public int Id{ get; set; }
+        public int Id { get; set; }
         public int Cantidad { get; set; }
-        public int  PrecioUnitario { get; set; }
+        public int PrecioUnitario { get; set; }
         public string MontoTotal { get; set; }
 
-        public static List<DetalleFactura> listaDetalleFactura= new List<DetalleFactura>();
+        public static List<DetalleFactura> listaDetalleFactura = new List<DetalleFactura>();
 
         public static void AgregarDetalleFactura(DetalleFactura d)
-    {
-        using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
-                 
         {
-            con.Open();
-            string textoCmd = "INSERT INTO DetalleFactura (Cantidad, PrecioUnitario, MontoTotal)VALUES (@Cantidad, @PrecioUnitario,@FechaDevolucion)";
-            SqlCommand cmd = new SqlCommand(textoCmd, con);
-            cmd = d.ObtenerParametros(cmd);
-            cmd.ExecuteNonQuery();
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+
+            {
+                con.Open();
+                string textoCmd = "INSERT INTO DetalleFactura (Cantidad, PrecioUnitario, MontoTotal)VALUES (@Cantidad, @PrecioUnitario,@FechaDevolucion)";
+                SqlCommand cmd = new SqlCommand(textoCmd, con);
+                cmd = d.ObtenerParametros(cmd);
+                cmd.ExecuteNonQuery();
+            }
         }
-    }
 
-    public static void EliminarDetalleFactura(DetalleFactura detallefactura)
-    {
-        using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
-
+        public static void EliminarDetalleFactura(DetalleFactura detallefactura)
         {
-            con.Open();
-            string SENTENCIA_SQL = "delete from DetalleFactura where Id = @Id";
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
 
-            SqlCommand cmd = new SqlCommand(SENTENCIA_SQL, con);
-            SqlParameter p1 = new SqlParameter("@Id", detallefactura.Id);
-            p1.SqlDbType = SqlDbType.Int;
-            cmd.Parameters.Add(p1);
+            {
+                con.Open();
+                string SENTENCIA_SQL = "delete from DetalleFactura where Id = @Id";
 
-            cmd.ExecuteNonQuery();
-            con.Close();
+                SqlCommand cmd = new SqlCommand(SENTENCIA_SQL, con);
+                SqlParameter p1 = new SqlParameter("@Id", detallefactura.Id);
+                p1.SqlDbType = SqlDbType.Int;
+                cmd.Parameters.Add(p1);
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
         }
-    }
 
         public static List<DetalleFactura> ObtenerDetalleFactura()
         {

@@ -19,7 +19,7 @@ namespace Interfaz_Aguila_Curda
             InitializeComponent();
         }
 
-        
+
         private void LimpiarFormulario()
         {
             txtCodCliente.Text = "";
@@ -27,33 +27,33 @@ namespace Interfaz_Aguila_Curda
             txtCI.Text = "";
             txtTelefono.Text = "";
             txtDireccion.Text = "";
-			lstCliente.SelectedItem = 0;
-            
+            lstCliente.SelectedItem = 0;
+
         }
 
 
 
-       
+
 
 
         private Cliente ObtenerDatosFormulario()
         {
             Cliente cliente = new Cliente();
-			if (!string.IsNullOrEmpty(txtCodCliente.Text))
-			{
-				cliente.CodCliente = Convert.ToInt16(txtCodCliente.Text);
-			}
+            if (!string.IsNullOrEmpty(txtCodCliente.Text))
+            {
+                cliente.CodCliente = Convert.ToInt16(txtCodCliente.Text);
+            }
 
-			
+
             cliente.Nombre = txtNombre.Text;
             cliente.Telefono = txtTelefono.Text;
             cliente.NroDocumento = txtCI.Text;
             cliente.Direccion = txtDireccion.Text;
-			cliente.Sexo= lstSexo.Text;
+            cliente.Sexo = lstSexo.Text;
 
 
 
-			return cliente;
+            return cliente;
         }
 
         private void ActualizarListaCliente()
@@ -69,12 +69,12 @@ namespace Interfaz_Aguila_Curda
         {
             if (lstCliente.SelectedItems.Count > 0)
             {
-				//int index = lstCliente.SelectedIndex;
-				//Cliente.listaCliente[index] = ObtenerDatosFormulario();
-				int index = lstCliente.SelectedIndex;
-				Cliente c = ObtenerDatosFormulario();
-				Cliente.ModificarCliente(index, c);
-				ActualizarListaCliente();
+                //int index = lstCliente.SelectedIndex;
+                //Cliente.listaCliente[index] = ObtenerDatosFormulario();
+                int index = lstCliente.SelectedIndex;
+                Cliente c = ObtenerDatosFormulario();
+                Cliente.ModificarCliente(index, c);
+                ActualizarListaCliente();
 
             }
             else
@@ -83,7 +83,7 @@ namespace Interfaz_Aguila_Curda
             }
         }
 
-       
+
 
         private void btnCancelar_Click_1(object sender, EventArgs e)
         {
@@ -105,6 +105,29 @@ namespace Interfaz_Aguila_Curda
             }
         }
 
+
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Cliente cliente = new Cliente();
+            cliente.Nombre = txtNombre.Text;
+            cliente.NroDocumento = txtCI.Text;
+            cliente.Telefono = txtTelefono.Text;
+            cliente.Direccion = txtDireccion.Text;
+            cliente.Sexo = lstSexo.Text;
+
+            Cliente.AgregarCliente(cliente);
+            LimpiarFormulario();
+            ActualizarListaCliente();
+        }
+
+       
+
+        private void frmCliente_Load(object sender, EventArgs e)
+        {
+            ActualizarListaCliente();
+        }
+
         private void lstCliente_Click_1(object sender, EventArgs e)
         {
             Cliente cliente = (Cliente)lstCliente.SelectedItem;
@@ -119,21 +142,7 @@ namespace Interfaz_Aguila_Curda
 
             }
         }
-
-		private void btnAgregar_Click(object sender, EventArgs e)
-		{
-			Cliente cliente = new Cliente();
-			cliente.Nombre = txtNombre.Text;
-			cliente.NroDocumento = txtCI.Text;
-			cliente.Telefono = txtTelefono.Text;
-			cliente.Direccion = txtDireccion.Text;
-			cliente.Sexo = lstSexo.Text;
-
-			Cliente.AgregarCliente(cliente);
-			LimpiarFormulario();
-			ActualizarListaCliente();
-		}
-	}
+    }
 
 }
 
