@@ -33,7 +33,6 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.cboArticulo = new System.Windows.Forms.ComboBox();
-            this.nudCantidad = new System.Windows.Forms.NumericUpDown();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.dgvFactura = new System.Windows.Forms.DataGridView();
             this.lblArticulo = new System.Windows.Forms.Label();
@@ -54,8 +53,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
             this.gbxDetalle.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFactura)).BeginInit();
             this.gbxCabecera.SuspendLayout();
             this.SuspendLayout();
@@ -74,10 +73,10 @@
             // 
             // gbxDetalle
             // 
+            this.gbxDetalle.Controls.Add(this.txtCantidad);
             this.gbxDetalle.Controls.Add(this.btnEliminar);
             this.gbxDetalle.Controls.Add(this.btnAgregar);
             this.gbxDetalle.Controls.Add(this.cboArticulo);
-            this.gbxDetalle.Controls.Add(this.nudCantidad);
             this.gbxDetalle.Controls.Add(this.lblCantidad);
             this.gbxDetalle.Controls.Add(this.dgvFactura);
             this.gbxDetalle.Controls.Add(this.lblArticulo);
@@ -118,6 +117,7 @@
             this.btnAgregar.TabIndex = 90;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = false;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // cboArticulo
             // 
@@ -126,14 +126,6 @@
             this.cboArticulo.Name = "cboArticulo";
             this.cboArticulo.Size = new System.Drawing.Size(175, 26);
             this.cboArticulo.TabIndex = 87;
-            // 
-            // nudCantidad
-            // 
-            this.nudCantidad.Location = new System.Drawing.Point(504, 38);
-            this.nudCantidad.Margin = new System.Windows.Forms.Padding(4);
-            this.nudCantidad.Name = "nudCantidad";
-            this.nudCantidad.Size = new System.Drawing.Size(85, 26);
-            this.nudCantidad.TabIndex = 86;
             // 
             // lblCantidad
             // 
@@ -148,7 +140,7 @@
             // dgvFactura
             // 
             this.dgvFactura.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFactura.Location = new System.Drawing.Point(48, 88);
+            this.dgvFactura.Location = new System.Drawing.Point(48, 92);
             this.dgvFactura.Name = "dgvFactura";
             this.dgvFactura.RowHeadersWidth = 51;
             this.dgvFactura.Size = new System.Drawing.Size(698, 150);
@@ -198,6 +190,7 @@
             this.btnCancelar.TabIndex = 88;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnGuardar
             // 
@@ -246,6 +239,7 @@
             this.btnHabilitarDetalle.TabIndex = 75;
             this.btnHabilitarDetalle.Text = "Habilitar Detalle";
             this.btnHabilitarDetalle.UseVisualStyleBackColor = true;
+            this.btnHabilitarDetalle.Click += new System.EventHandler(this.btnHabilitarDetalle_Click_1);
             // 
             // cboCliente
             // 
@@ -350,6 +344,13 @@
             this.label18.TabIndex = 13;
             this.label18.Text = "Cliente";
             // 
+            // txtCantidad
+            // 
+            this.txtCantidad.Location = new System.Drawing.Point(513, 35);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(103, 26);
+            this.txtCantidad.TabIndex = 76;
+            // 
             // frmFacturas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -361,12 +362,12 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.gbxCabecera);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmFacturas";
             this.Text = "frmFacturas";
+            this.Load += new System.EventHandler(this.frmFacturas_Load_1);
             this.gbxDetalle.ResumeLayout(false);
             this.gbxDetalle.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFactura)).EndInit();
             this.gbxCabecera.ResumeLayout(false);
             this.gbxCabecera.PerformLayout();
@@ -382,7 +383,6 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.ComboBox cboArticulo;
-        internal System.Windows.Forms.NumericUpDown nudCantidad;
         internal System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.DataGridView dgvFactura;
         internal System.Windows.Forms.Label lblArticulo;
@@ -403,5 +403,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox txtCantidad;
     }
 }

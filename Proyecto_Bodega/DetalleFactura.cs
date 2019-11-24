@@ -10,8 +10,8 @@ namespace Proyecto_Bodega
     public class DetalleFactura
     {
         public int Id { get; set; }
-        public int Cantidad { get; set; }
-        public int PrecioUnitario { get; set; }
+        public string Cantidad { get; set; }
+        public Articulo Articulo { get; set; }
         public string MontoTotal { get; set; }
 
         public static List<DetalleFactura> listaDetalleFactura = new List<DetalleFactura>();
@@ -22,7 +22,7 @@ namespace Proyecto_Bodega
 
             {
                 con.Open();
-                string textoCmd = "INSERT INTO DetalleFactura (Cantidad, PrecioUnitario, MontoTotal)VALUES (@Cantidad, @PrecioUnitario,@FechaDevolucion)";
+                string textoCmd = "INSERT INTO DetalleFactura (Cantidad, Articulo, MontoTotal)VALUES (@Cantidad, @Articulo,@FechaDevolucion)";
                 SqlCommand cmd = new SqlCommand(textoCmd, con);
                 cmd = d.ObtenerParametros(cmd);
                 cmd.ExecuteNonQuery();
@@ -66,8 +66,10 @@ namespace Proyecto_Bodega
                     DetalleFactura = new DetalleFactura();
                     DetalleFactura.Id = elLectorDeDatos.GetInt32(0);
                     DetalleFactura.MontoTotal = elLectorDeDatos.GetString(1);
-                    DetalleFactura.Cantidad = elLectorDeDatos.GetInt32(2);
-                    DetalleFactura.PrecioUnitario = elLectorDeDatos.GetInt32(3);
+                    DetalleFactura.Cantidad = elLectorDeDatos.GetString(2);
+                    DetalleFactura.Articulo = Articulo.ObtenerArticulo(elLectorDeDatos.GetInt32(3));
+
+                  
 
                     listaDetalleFactura.Add(DetalleFactura);
 
@@ -90,10 +92,10 @@ namespace Proyecto_Bodega
 
         {
             SqlParameter p1 = new SqlParameter("@Cantidad", this.Cantidad);
-            SqlParameter p2 = new SqlParameter("@PrecioUnitario", this.PrecioUnitario);
+            SqlParameter p2 = new SqlParameter("@Articulo", this.Articulo);
             SqlParameter p3 = new SqlParameter("@MontoTotal", this.MontoTotal);
 
-            p1.SqlDbType = SqlDbType.Int;
+            p1.SqlDbType = SqlDbType.VarChar;
             p2.SqlDbType = SqlDbType.Int;
             p3.SqlDbType = SqlDbType.VarChar;
 

@@ -95,7 +95,24 @@ namespace Interfaz_Aguila_Curda
       
 
       
-        private void lstcompra_Click(object sender, EventArgs e)
+      
+
+        private void frmCompra_Load(object sender, EventArgs e)
+        {
+            cmbMedioPago.DataSource = Compra.ObtenerCompra();
+            cmbProveedor.DataSource = Proveedor.ObtenerProveedores();
+            cmbProveedor.SelectedItem = null;
+            cmbMedioPago.SelectedItem = null;
+           
+          
+        }
+        
+            
+
+
+          
+
+        private void lstcompra_Click_1(object sender, EventArgs e)
         {
             Compra compra = (Compra)lstcompra.SelectedItem;
             if (compra != null)

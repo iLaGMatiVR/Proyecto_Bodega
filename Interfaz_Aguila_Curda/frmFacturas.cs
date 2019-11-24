@@ -14,15 +14,24 @@ namespace Interfaz_Aguila_Curda
     public partial class frmFacturas : Form
     {
 
+        string monto;
         Factura factura;
         public frmFacturas()
         {
             InitializeComponent();
         }
 
-        private void frmFacturas_Load(object sender, EventArgs e)
+    
+        private void btnHabilitarDetalle_Click_1(object sender, EventArgs e)
         {
+            gbxDetalle.Enabled = true;
+            gbxCabecera.Enabled = false;
 
+            cboArticulo.Focus();
+        }
+
+        private void frmFacturas_Load_1(object sender, EventArgs e)
+        {
             dgvFactura.AutoGenerateColumns = true;
             cmbTipoPago.DataSource = Enum.GetValues(typeof(TipoPago));
             cboCliente.DataSource = Cliente.ObtenerClientes();
@@ -38,27 +47,11 @@ namespace Interfaz_Aguila_Curda
 
         }
 
-        private void btnHabilitarDetalle_Click(object sender, EventArgs e)
-        {
-            gbxDetalle.Enabled = true;
-            gbxCabecera.Enabled = false;
-
-            cboArticulo.Focus();
-        }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-
-
-
-
-
-        }
 
         private void ActualizarLista()
         {
 
-            dgvFactura.DataSource = Factura.ObtenerFactura();
+            dgvFactura.DataSource = DetalleFactura.ObtenerDetalleFactura();
             dgvFactura.DataSource = null;
         }
 
@@ -66,10 +59,11 @@ namespace Interfaz_Aguila_Curda
         {
             txtNroFactura.Text = "";
             txtTimbrado.Text = "";
-            cboCliente.SelectedItem = 0;
+            cboCliente.SelectedItem = null;
             cmbTipoPago.SelectedItem = null;
             dtpFechaFactura.Value = System.DateTime.Now;
-            cboArticulo.SelectedItem = 0;
+            cboArticulo.SelectedItem = null;
+            txtCantidad.Text = "";
         }
 
 
@@ -84,7 +78,32 @@ namespace Interfaz_Aguila_Curda
             factura.articulo = (Articulo)cboArticulo.SelectedItem;
 
             return factura;
+
+
+           
         }
+
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+
+            //se va tirando los datos del detalle
+            DetalleFactura df = new DetalleFactura();
+            df.Cantidad = txtCantidad.Text;
+
+            df.Articulo = (Articulo)cboArticulo.SelectedItem;
+            factura.detalle_factura.Add(df);
+         
+            ActualizarLista();
+
+            //realizar calculo monto
+            //lblTotalMonto.Text = Convert.ToString(Articulo.Precio_Unit);
+
+            //lineas para la suma
+            monto = lblTotalMonto.Text;
+            lblTotalMonto.Text = monto + lblTotalMonto;
+        }
+
 
         /*private void btnModificar_Click_1(object sender, EventArgs e)
         {
@@ -125,11 +144,26 @@ namespace Interfaz_Aguila_Curda
             ActualizarLista();
         }
 
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
 
 
+            /*r (gvFactura.RowCount - 1 To 0 Step - 1) ;
+                {
+                row DataGridViewRow = dgvFactura.Rows();
+
+            dgvFactura.Rows.Remove();
+
+            }*/
+
+            lblTotalMonto.Text = "";
 
 
+            gbxCabecera.Enabled = true;
+            gbxDetalle.Enabled = false;
+        }
 
-
+    
     }
 }

@@ -113,17 +113,17 @@ namespace Proyecto_Bodega
         {
             //PARAMETROS
             SqlParameter p1 = new SqlParameter("@NroFactura", this.NroFactura);
-            SqlParameter p3 = new SqlParameter("@Proveedor", this.Proveedor);
-            SqlParameter p2 = new SqlParameter("@Timbrado", this.Direccion);
+            SqlParameter p2 = new SqlParameter("@Proveedor", this.Proveedor.CodProveedor);
+            SqlParameter p3 = new SqlParameter("@Timbrado", this.Direccion);
             SqlParameter p4 = new SqlParameter("@MedioPago", this.MedioPago);
             SqlParameter p5 = new SqlParameter("@FechaCompra", this.FechaCompra);
 
             //Le decimos a los parametros de que tipo de datos son
-            p1.SqlDbType = SqlDbType.VarChar;
-            p2.SqlDbType = SqlDbType.VarChar;
+            p1.SqlDbType = SqlDbType.Int;
+            p2.SqlDbType = SqlDbType.Int;
             p3.SqlDbType = SqlDbType.VarChar;
-            p4.SqlDbType = SqlDbType.VarChar;
-            p5.SqlDbType = SqlDbType.VarChar;
+            p4.SqlDbType = SqlDbType.Int;
+            p5.SqlDbType = SqlDbType.DateTime;
 
             //Agragamos los parametros al command
             cmd.Parameters.Add(p1);
@@ -141,9 +141,9 @@ namespace Proyecto_Bodega
 
         private SqlCommand ObtenerParametrosId(SqlCommand cmd)
         {
-            SqlParameter p8 = new SqlParameter("@id", this.Id);
-            p8.SqlDbType = SqlDbType.Int;
-            cmd.Parameters.Add(p8);
+            SqlParameter p6 = new SqlParameter("@id", this.Id);
+            p6.SqlDbType = SqlDbType.Int;
+            cmd.Parameters.Add(p6);
             return cmd;
 
         }
