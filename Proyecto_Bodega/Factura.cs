@@ -23,6 +23,7 @@ namespace Proyecto_Bodega
         public Cliente Cliente { get; set; }
         public TipoPago TipoPago { get; set; }
         public DateTime FechaFactura { get; set; }
+        public double MontoTotal { get; set; }
 
         public Articulo articulo { get; set; }
 
@@ -38,7 +39,7 @@ namespace Proyecto_Bodega
 
             {
                 con.Open(); //Abrimos la conex con la BD
-                string textoCmd = @"insert into Factura (NroFactura, Timbrado, Cliente, TipoPago, FechaFactura) output INSERTED.id VALUES (@NroFactura, @Timbrado, @Cliente, @TipoPago,  @FechaFactura)";
+                string textoCmd = @"insert into Factura (NroFactura, Timbrado, Cliente, TipoPago, FechaFactura, MontoTotal) output INSERTED.id VALUES (@NroFactura, @Timbrado, @Cliente, @TipoPago,  @FechaFactura, @MontoTotal)";
 
                 SqlCommand cmd = new SqlCommand(textoCmd, con);
                 SqlParameter p1 = new SqlParameter("@NroFactura", fac.NroFactura);
@@ -46,33 +47,39 @@ namespace Proyecto_Bodega
                 SqlParameter p3 = new SqlParameter("@Cliente", fac.Cliente.CodCliente);
                 SqlParameter p4 = new SqlParameter("@TipoPago", fac.TipoPago);
                 SqlParameter p5 = new SqlParameter("@FechaFactura", fac.FechaFactura);
+                SqlParameter p6 = new SqlParameter("@MontoTotal", fac.MontoTotal);
                 p1.SqlDbType = SqlDbType.VarChar;
                 p2.SqlDbType = SqlDbType.VarChar;
                 p3.SqlDbType = SqlDbType.Int;
                 p4.SqlDbType = SqlDbType.Int;
                 p5.SqlDbType = SqlDbType.DateTime;
+                p6.SqlDbType = SqlDbType.Int;
                 cmd.Parameters.Add(p1);
                 cmd.Parameters.Add(p2);
                 cmd.Parameters.Add(p3);
                 cmd.Parameters.Add(p4);
                 cmd.Parameters.Add(p5);
+                cmd.Parameters.Add(p6);
 
                 int factura_id = (int)cmd.ExecuteScalar();
 
                 foreach (DetalleFactura df in fac.detalle_factura)
                 {
-                    string textoCmd2 = "INSERT INTO DetalleFactura (factura_id, Cantidad, Articulo)VALUES (@id, @Cantidad, @Articulo)";
+                    string textoCmd2 = "INSERT INTO DetalleFactura (factura_id, Cantidad, Articulo, Precio)VALUES (@id, @Cantidad, @Articulo, @Precio)";
                     SqlCommand cmd2 = new SqlCommand(textoCmd2, con);
 
-                    SqlParameter p6 = new SqlParameter("@id", factura_id);
-                    SqlParameter p7 = new SqlParameter("@Cantidad", df.Cantidad);
-                    SqlParameter p8 = new SqlParameter("@Articulo", df.Articulo.Id);
-                    p6.SqlDbType = SqlDbType.Int;
-                    p7.SqlDbType = SqlDbType.Float;
-                    p8.SqlDbType = SqlDbType.Int;
-                    cmd2.Parameters.Add(p6);
+                    SqlParameter p7 = new SqlParameter("@id", factura_id);
+                    SqlParameter p8 = new SqlParameter("@Cantidad", df.Cantidad);
+                    SqlParameter p9 = new SqlParameter("@Articulo", df.Articulo.Id);
+                    SqlParameter p10 = new SqlParameter("@Precio", df.Precio);
+                    p7.SqlDbType = SqlDbType.Int;
+                    p8.SqlDbType = SqlDbType.Float;
+                    p9.SqlDbType = SqlDbType.Int;
+                    p10.SqlDbType = SqlDbType.Float;
                     cmd2.Parameters.Add(p7);
                     cmd2.Parameters.Add(p8);
+                    cmd2.Parameters.Add(p9);
+                    cmd2.Parameters.Add(p10);
 
                     cmd2.ExecuteNonQuery();
                 }

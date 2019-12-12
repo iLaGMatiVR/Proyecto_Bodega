@@ -64,6 +64,7 @@ namespace Interfaz_Aguila_Curda
             cboArticulo.SelectedItem = null;
             txtCantidad.Text = "";
             lblTotalMonto.Text = "";
+            txtPrecio.Text = "";
         }
 
 
@@ -90,8 +91,8 @@ namespace Interfaz_Aguila_Curda
             //se va tirando los datos del detalle
             DetalleFactura df = new DetalleFactura();
             df.Cantidad = Convert.ToDouble(txtCantidad.Text);
-
             df.Articulo = (Articulo)cboArticulo.SelectedItem;
+            df.Precio = Convert.ToDouble(txtPrecio.Text);
             factura.detalle_factura.Add(df);
 
             ActualizarLista();
@@ -174,6 +175,7 @@ namespace Interfaz_Aguila_Curda
             factura.Cliente = (Cliente)cboCliente.SelectedItem;
             factura.TipoPago = (TipoPago)cmbTipoPago.SelectedItem;
             factura.FechaFactura = dtpFechaFactura.Value.Date;
+            factura.MontoTotal = Convert.ToDouble(lblTotalMonto.Text);
             Factura.AgregarFactura(factura);
             MessageBox.Show("La factura ha sido guardado con éxito");
             LimpiarFormulario();
