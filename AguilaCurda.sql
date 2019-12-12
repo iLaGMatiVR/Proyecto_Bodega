@@ -3,19 +3,18 @@ GO
 
 USE [AguilaCurda]
 GO
-
 CREATE TABLE [dbo].[Articulo](
-	[Id_Articulo] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Descripcion] [varchar](50) NULL,
-	[Marca] [varchar](20) NULL,
+	[Marca] [varchar](50) NULL,
 	[Costo] [float] NULL,
 	[Precio_Unitario] [float] NULL,
-	[Proveedor] [varchar](50) NULL,
-	[Vencimiento] [varchar](50) NULL,
+	[Proveedor] [int] NULL,
+	[Vencimiento] [datetime] NULL,
  CONSTRAINT [PK_Articulo] PRIMARY KEY CLUSTERED 
 (
-	[Id_Articulo] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 
