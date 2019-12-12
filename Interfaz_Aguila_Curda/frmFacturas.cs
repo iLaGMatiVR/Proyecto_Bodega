@@ -14,7 +14,7 @@ namespace Interfaz_Aguila_Curda
     public partial class frmFacturas : Form
     {
 
-        string monto;
+        int monto;
         Factura factura;
         public frmFacturas()
         {
@@ -50,9 +50,8 @@ namespace Interfaz_Aguila_Curda
 
         private void ActualizarLista()
         {
-
-            dgvFactura.DataSource = DetalleFactura.ObtenerDetalleFactura();
             dgvFactura.DataSource = null;
+            dgvFactura.DataSource = factura.detalle_factura;
         }
 
         private void LimpiarFormulario()
@@ -64,24 +63,25 @@ namespace Interfaz_Aguila_Curda
             dtpFechaFactura.Value = System.DateTime.Now;
             cboArticulo.SelectedItem = null;
             txtCantidad.Text = "";
+            lblTotalMonto.Text = "";
         }
 
 
-        private Factura ObtenerDatosFormulario()
-        {
-            Factura factura = new Factura();
-            factura.NroFactura = txtNroFactura.Text;
-            factura.Timbrado = txtTimbrado.Text;
-            factura.Cliente = (Cliente)cboCliente.SelectedItem;
-            factura.TipoPago = (TipoPago)cmbTipoPago.SelectedItem;
-            factura.FechaFactura = dtpFechaFactura.Value.Date;
-            factura.articulo = (Articulo)cboArticulo.SelectedItem;
+        //private Factura ObtenerDatosFormulario()
+        //{
+        //    Factura factura = new Factura();
+        //    factura.NroFactura = txtNroFactura.Text;
+        //    factura.Timbrado = txtTimbrado.Text;
+        //    factura.Cliente = (Cliente)cboCliente.SelectedItem;
+        //    factura.TipoPago = (TipoPago)cmbTipoPago.SelectedItem;
+        //    factura.FechaFactura = dtpFechaFactura.Value.Date;
+        //    factura.articulo = (Articulo)cboArticulo.SelectedItem;
 
-            return factura;
+        //    return factura;
 
 
            
-        }
+        //}
 
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -89,19 +89,20 @@ namespace Interfaz_Aguila_Curda
 
             //se va tirando los datos del detalle
             DetalleFactura df = new DetalleFactura();
-            df.Cantidad = txtCantidad.Text;
+            df.Cantidad = Convert.ToDouble(txtCantidad.Text);
 
             df.Articulo = (Articulo)cboArticulo.SelectedItem;
             factura.detalle_factura.Add(df);
-         
+
             ActualizarLista();
 
             //realizar calculo monto
             //lblTotalMonto.Text = Convert.ToString(Articulo.Precio_Unit);
 
             //lineas para la suma
-            monto = lblTotalMonto.Text;
-            lblTotalMonto.Text = monto + lblTotalMonto;
+            monto = monto + (int.Parse(txtCantidad.Text) * (int.Parse(txtPrecio.Text)));
+            lblTotalMonto.Text = monto.ToString();
+
         }
 
 
@@ -142,6 +143,8 @@ namespace Interfaz_Aguila_Curda
             DetalleFactura f = (DetalleFactura)dgvFactura.CurrentRow.DataBoundItem;
             factura.detalle_factura.Remove(f);
             ActualizarLista();
+            monto = monto - (int.Parse(txtCantidad.Text) * (int.Parse(txtPrecio.Text)));
+            lblTotalMonto.Text = monto.ToString();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -164,6 +167,24 @@ namespace Interfaz_Aguila_Curda
             gbxDetalle.Enabled = false;
         }
 
-    
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            factura.NroFactura = txtNroFactura.Text;
+            factura.Timbrado = txtTimbrado.Text;
+            factura.Cliente = (Cliente)cboCliente.SelectedItem;
+            factura.TipoPago = (TipoPago)cmbTipoPago.SelectedItem;
+            factura.FechaFactura = dtpFechaFactura.Value.Date;
+            Factura.AgregarFactura(factura);
+            MessageBox.Show("La factura ha sido guardado con éxito");
+            LimpiarFormulario();
+            dgvFactura.DataSource = null;
+            dtpFechaFactura.Value = System.DateTime.Now;
+            cboArticulo.SelectedItem = null;
+            cboCliente.SelectedItem = null;
+
+            factura = new Factura();
+            gbxCabecera.Enabled = true;
+            gbxDetalle.Enabled = false;
+        }
     }
 }
