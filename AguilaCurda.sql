@@ -39,6 +39,7 @@ CREATE TABLE [dbo].[Factura](
 	[Cliente] [int] NULL,
 	[TipoPago] [int] NULL,
 	[FechaFactura] [datetime] NULL,
+	[MontoTotal] [float] NULL,
  CONSTRAINT [PK_Factura] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -60,12 +61,12 @@ CREATE TABLE [dbo].[Proveedor](
 ) ON [PRIMARY]
 GO
 
-
 CREATE TABLE [dbo].[DetalleFactura](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[factura_id] [int] NOT NULL,
 	[Cantidad] [float] NULL,
 	[Articulo] [int] NULL,
+	[Precio] [float] NULL,
  CONSTRAINT [PK_DetalleFactura] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
