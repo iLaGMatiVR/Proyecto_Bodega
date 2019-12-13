@@ -21,9 +21,10 @@ namespace Interfaz_Aguila_Curda
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (this.Opacity < 1) this.Opacity += 0.05;
-            progressBar1.Value += 1;
+            circularProgressBar1.Value += 1;
+            circularProgressBar1.Text = circularProgressBar1.Value.ToString();
 
-            if (progressBar1.Value == 100)
+            if (circularProgressBar1.Value == 100)
             {
                 timer1.Stop();
                 timer2.Start();
@@ -44,6 +45,8 @@ namespace Interfaz_Aguila_Curda
         {
             lblNombreUsuario.Text = UserLoginCache.Nombre + ", " + UserLoginCache.Apellido;
             this.Opacity = 0.0;
+            circularProgressBar1.Minimum = 0;
+            circularProgressBar1.Maximum = 100;
             timer1.Start();
         }
     }

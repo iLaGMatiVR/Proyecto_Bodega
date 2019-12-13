@@ -124,6 +124,7 @@
             this.btnReporte.TabIndex = 9;
             this.btnReporte.Text = "Reportes";
             this.btnReporte.UseVisualStyleBackColor = true;
+            this.btnReporte.Click += new System.EventHandler(this.btnReporte_Click_1);
             // 
             // button1
             // 

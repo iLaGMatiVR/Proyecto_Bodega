@@ -95,10 +95,12 @@ namespace Interfaz_Aguila_Curda
                     var ValidLogin = usuario.LoginUser(txtUsuario.Text, txtContraseña.Text);
                     if(ValidLogin == true){
                         frmMenuPro menuPro = new frmMenuPro();
-                        MessageBox.Show("Welcome" + UserLoginCache.Nombre + ", " + UserLoginCache.Apellido);
+                        this.Hide();
+                        frmBienvenida bienvenida = new frmBienvenida();
+                        bienvenida.ShowDialog();
                         menuPro.Show();
                         menuPro.FormClosed += Logout;
-                        this.Hide();
+                       
                     }
                     else
                     {

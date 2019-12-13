@@ -137,5 +137,10 @@ namespace Interfaz_Aguila_Curda
                 btnProveedor.Enabled = false;
             }
         }
+
+        private void btnReporte_Click_1(object sender, EventArgs e)
+        {
+            AbrirFormInPanel(new frmReporteArticulo());
+        }
     }
 }
