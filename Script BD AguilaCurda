@@ -159,23 +159,7 @@ CREATE TABLE [dbo].[DetalleCompra](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[DetalleFactura]    Script Date: 24/11/2019 01:32:34 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[DetalleFactura](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Cantidad] [int] NULL,
-	[Articulo] [int] NOT NULL,
-	[MontoTotal] [nchar](50) NULL,
- CONSTRAINT [PK_DetalleFactura] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
 
-GO
 /****** Object:  Table [dbo].[Devolucion]    Script Date: 24/11/2019 01:32:34 ******/
 SET ANSI_NULLS ON
 GO
@@ -193,30 +177,31 @@ CREATE TABLE [dbo].[Devolucion](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Factura]    Script Date: 24/11/2019 01:32:34 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-SET ANSI_PADDING ON
-GO
-CREATE TABLE [dbo].[Factura](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[NroFactura] [varchar](50) NULL,
-	[Timbrado] [varchar](50) NULL,
+@@ -39,6 +39,7 @@ CREATE TABLE [dbo].[Factura](
 	[Cliente] [int] NULL,
 	[TipoPago] [int] NULL,
-	[FechaFactura] [datetime] NULL
+	[FechaFactura] [datetime] NULL,
+	[MontoTotal] [float] NULL,
+ CONSTRAINT [PK_Factura] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+@@ -60,12 +61,12 @@ CREATE TABLE [dbo].[Proveedor](
+) ON [PRIMARY]
+GO
+
+
+CREATE TABLE [dbo].[DetalleFactura](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[factura_id] [int] NOT NULL,
+	[Cantidad] [float] NULL,
+	[Articulo] [int] NULL,
+	[Precio] [float] NULL,
+ CONSTRAINT [PK_DetalleFactura] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
-GO
-SET ANSI_PADDING OFF
-GO
-
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
 GO
 /****** Object:  Table [dbo].[Usuarios]    Script Date: 12/12/2019 23:25:22 ******/
 CREATE TABLE [dbo].[Usuarios](
