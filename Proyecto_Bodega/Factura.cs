@@ -18,8 +18,8 @@ namespace Proyecto_Bodega
     public class Factura
     {
         public int Id { get; set; }
-        public string NroFactura { get; set; }
-        public string Timbrado { get; set; }
+        public int NroFactura { get; set; }
+        public int Timbrado { get; set; }
         public Cliente Cliente { get; set; }
         public TipoPago TipoPago { get; set; }
         public DateTime FechaFactura { get; set; }
@@ -48,8 +48,8 @@ namespace Proyecto_Bodega
                 SqlParameter p4 = new SqlParameter("@TipoPago", fac.TipoPago);
                 SqlParameter p5 = new SqlParameter("@FechaFactura", fac.FechaFactura);
                 SqlParameter p6 = new SqlParameter("@MontoTotal", fac.MontoTotal);
-                p1.SqlDbType = SqlDbType.VarChar;
-                p2.SqlDbType = SqlDbType.VarChar;
+                p1.SqlDbType = SqlDbType.Int;
+                p2.SqlDbType = SqlDbType.Int;
                 p3.SqlDbType = SqlDbType.Int;
                 p4.SqlDbType = SqlDbType.Int;
                 p5.SqlDbType = SqlDbType.DateTime;
@@ -105,7 +105,7 @@ namespace Proyecto_Bodega
 
         public override string ToString()
         {
-            return this.NroFactura;
+            return this.Cliente.Nombre;
         }
 
     }
