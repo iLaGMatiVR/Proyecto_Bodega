@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.txtContraseña = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,13 +39,13 @@
             this.btnMinimizar = new System.Windows.Forms.PictureBox();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.lineShape2 = new Microsoft.VisualBasic.PowerPacks.LineShape();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.errorLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -57,6 +58,16 @@
             this.panel1.Size = new System.Drawing.Size(250, 330);
             this.panel1.TabIndex = 0;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(-5, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(255, 245);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // txtUsuario
             // 
@@ -111,6 +122,7 @@
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "ACCEDER";
             this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // linkPass
             // 
@@ -160,16 +172,6 @@
             this.shapeContainer1.TabIndex = 8;
             this.shapeContainer1.TabStop = false;
             // 
-            // lineShape1
-            // 
-            this.lineShape1.BorderColor = System.Drawing.Color.DimGray;
-            this.lineShape1.Enabled = false;
-            this.lineShape1.Name = "lineShape1";
-            this.lineShape1.X1 = 383;
-            this.lineShape1.X2 = 693;
-            this.lineShape1.Y1 = 122;
-            this.lineShape1.Y2 = 122;
-            // 
             // lineShape2
             // 
             this.lineShape2.BorderColor = System.Drawing.Color.DimGray;
@@ -180,15 +182,25 @@
             this.lineShape2.Y1 = 174;
             this.lineShape2.Y2 = 173;
             // 
-            // pictureBox1
+            // lineShape1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-5, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(255, 245);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.lineShape1.BorderColor = System.Drawing.Color.DimGray;
+            this.lineShape1.Enabled = false;
+            this.lineShape1.Name = "lineShape1";
+            this.lineShape1.X1 = 383;
+            this.lineShape1.X2 = 693;
+            this.lineShape1.Y1 = 122;
+            this.lineShape1.Y2 = 122;
+            // 
+            // errorLabel
+            // 
+            this.errorLabel.AutoSize = true;
+            this.errorLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorLabel.Location = new System.Drawing.Point(383, 180);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(46, 17);
+            this.errorLabel.TabIndex = 9;
+            this.errorLabel.Text = "label2";
             // 
             // frmLogin
             // 
@@ -197,6 +209,7 @@
             this.AutoScrollMargin = new System.Drawing.Size(1, 2);
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ClientSize = new System.Drawing.Size(780, 330);
+            this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnMinimizar);
             this.Controls.Add(this.linkPass);
@@ -213,9 +226,9 @@
             this.Text = "frmLogin";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmLogin_MouseDown);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -235,5 +248,6 @@
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape2;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label errorLabel;
     }
 }

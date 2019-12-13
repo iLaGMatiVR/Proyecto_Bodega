@@ -13,7 +13,7 @@ namespace AccesoDatos
         private readonly String conexionString;
         public ConexionSQL()
         {
-            conexionString = "SGO-03; Database =AguilaCurda; user id = sa; password = MatiVR98" "
+            conexionString = "SGO-03; Database =AguilaCurda; user id = sa; password = MatiVR98";
         }
         protected SqlConnection GetConnection()
         {

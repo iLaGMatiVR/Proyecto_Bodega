@@ -13,7 +13,7 @@ namespace Proyecto_Bodega
             user User = new user();
             public bool LoginUser(string user, string pass) { 
             
-                return user.Login(user, pass);
+                return User.Login(user, pass);
             }
 
         

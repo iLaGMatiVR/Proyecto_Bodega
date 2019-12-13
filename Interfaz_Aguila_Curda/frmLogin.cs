@@ -82,5 +82,28 @@ namespace Interfaz_Aguila_Curda
             ReleaseCapture();
             SendMessagge(this.Handle, 0x112, 0xf012, 0);
         }
-    }
-}
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            if (txtUsuario.Text != "USUARIO")
+            {
+                if (txtContraseña.Text != "CONTRASEÑA")
+                {
+
+                }
+                else msgError("Please enter password");
+
+            }
+            else msgError("Please enter username");
+                }
+                private void msgError(string msg)
+            {
+                errorLabel.Text = "    " + msg;
+                errorLabel.Visible = true;
+            }
+
+
+              }  
+            }
+        
+    
