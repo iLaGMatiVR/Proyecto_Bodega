@@ -25,5 +25,10 @@ namespace Interfaz_Aguila_Curda
             lblResultado.Text = result;
             
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

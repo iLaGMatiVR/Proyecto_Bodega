@@ -116,7 +116,7 @@
             this.btnLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.ForeColor = System.Drawing.Color.LightGray;
-            this.btnLogin.Location = new System.Drawing.Point(349, 226);
+            this.btnLogin.Location = new System.Drawing.Point(349, 241);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(341, 40);
             this.btnLogin.TabIndex = 3;
@@ -131,7 +131,7 @@
             this.linkPass.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkPass.ForeColor = System.Drawing.Color.DimGray;
             this.linkPass.LinkColor = System.Drawing.Color.DimGray;
-            this.linkPass.Location = new System.Drawing.Point(413, 281);
+            this.linkPass.Location = new System.Drawing.Point(413, 294);
             this.linkPass.Name = "linkPass";
             this.linkPass.Size = new System.Drawing.Size(224, 20);
             this.linkPass.TabIndex = 0;
@@ -197,7 +197,7 @@
             // 
             this.errorLabel.AutoSize = true;
             this.errorLabel.ForeColor = System.Drawing.Color.DimGray;
-            this.errorLabel.Location = new System.Drawing.Point(383, 202);
+            this.errorLabel.Location = new System.Drawing.Point(383, 205);
             this.errorLabel.Name = "errorLabel";
             this.errorLabel.Size = new System.Drawing.Size(46, 17);
             this.errorLabel.TabIndex = 9;
