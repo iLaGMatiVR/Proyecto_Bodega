@@ -22,35 +22,69 @@ namespace Interfaz_Aguila_Curda
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            modo = "I";
-            Articulo articulos = (Articulo)lstArticulos.SelectedItem;
-
-
-            Articulo articulo = ObtenerArticuloFormulario();
-            Articulo.AgregarArticulo(articulo);
-
-            /*if (articulos == null)
+            if (ValidarDatos())
             {
+                modo = "I";
+                Articulo articulos = (Articulo)lstArticulos.SelectedItem;
+
 
                 Articulo articulo = ObtenerArticuloFormulario();
                 Articulo.AgregarArticulo(articulo);
-            }
-            else if (articulos != null)
-            {
-                modo = "E";
-                int index = lstArticulos.SelectedIndex;
-                Articulo articulo = ObtenerArticuloFormulario();
-                Articulo.ModificarArticulo(index, articulo);
-            }
-            */
 
-
-            ActualizarListaArticulos();
-            LimpiarFormulario();
-            txtDescripcion.Focus();
+                ActualizarListaArticulos();
+                LimpiarFormulario();
+                txtDescripcion.Focus();
+            }
+            
         }
 
+        private bool ValidarDatos()
+        {
+            if (String.IsNullOrWhiteSpace(txtDescripcion.Text))
+            {
+                MessageBox.Show("La Descripcion no puede estar vacío", "Error");
+                txtDescripcion.Focus();
+                return false;
+            }
+            if (String.IsNullOrWhiteSpace(txtMarca.Text))
+            {
+                MessageBox.Show("La Marca no puede estar vacío", "Error");
+                txtMarca.Focus();
+                return false;
+            }
+            if (nudCosto.Value <= 0 || nudCosto.Value > 1000000)
+            {
+                MessageBox.Show("Por favor ingrese un costo mayor a cero", "Error");
+                nudCosto.Focus();
+                return false;
+            }
+            if (nudPrecioUnit.Value <= 0 || nudPrecioUnit.Value > 1000000)
+            {
+                MessageBox.Show("Por favor ingrese precio unitario mayor a cero", "Error");
+                nudPrecioUnit.Focus();
+                return false;
+            }
+            
+           
+            var fechaIncorrecta = new DateTime(2100, 1, 1);
 
+            if (dtpVencimiento.Value < DateTime.Now || dtpVencimiento.Value > DateTime.Parse("01/01/2100") || dtpVencimiento.Value > fechaIncorrecta)
+            {
+                MessageBox.Show("Por favor ingrese una fecha de vencimiento correcta", "Error");
+                dtpVencimiento.Focus();
+                return false;
+            }
+            var pro = (Proveedor)cmbProveedor.SelectedItem;
+            if (pro == null)
+            {
+                MessageBox.Show("Por favor seleccione un Proveedor", "Error");
+                cmbProveedor.Focus();
+                return false;
+            }
+
+
+            return true;
+        }
 
         private void ActualizarListaArticulos()
         {
@@ -63,7 +97,7 @@ namespace Interfaz_Aguila_Curda
             txtId.Text = "";
             txtDescripcion.Text = "";
             txtMarca.Text = "";
-            dateVencimiento.Value = DateTime.Now;
+            dtpVencimiento.Value = DateTime.Now;
             nudCosto.Text = "0";
             nudPrecioUnit.Text = "0";
             cmbProveedor.Text = "";
@@ -101,7 +135,7 @@ namespace Interfaz_Aguila_Curda
             articulo.Marca = txtMarca.Text;
             articulo.Precio_Unit = Convert.ToDouble(nudPrecioUnit.Text);
             articulo.Costo = Convert.ToDouble(nudCosto.Text);
-            articulo.Fecha_Venc = dateVencimiento.Value;
+            articulo.Fecha_Venc = dtpVencimiento.Value;
 
             articulo.Proveedor = (Proveedor)cmbProveedor.SelectedItem;
 
@@ -155,10 +189,9 @@ namespace Interfaz_Aguila_Curda
                 txtDescripcion.Text = articulo.Descripcion;
                 txtMarca.Text = articulo.Marca;
                 cmbProveedor.SelectedItem = articulo.Proveedor;
-                dateVencimiento.Value = articulo.Fecha_Venc;
+                dtpVencimiento.Value = articulo.Fecha_Venc;
                 nudCosto.Value = Convert.ToInt32(articulo.Costo);
                 nudPrecioUnit.Value = Convert.ToInt32(articulo.Precio_Unit);
-
 
             }
         }
