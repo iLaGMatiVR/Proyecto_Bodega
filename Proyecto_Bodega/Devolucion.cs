@@ -11,6 +11,7 @@ namespace Proyecto_Bodega
 {
     public class Devolucion
     {
+
         public int Id { set; get; }
         public string Motivo_Devolucion { get; set; }
         public Articulo Articulo { set; get; }
@@ -24,7 +25,7 @@ namespace Proyecto_Bodega
 
             {
                 con.Open();
-                string textoCmd = "insert into Devolucion (Motivo_Devolucion, Articulo, FechaDevol) VALUES (@Motivo_Devolucion, @Articulo, @FechaDevol)";
+                string textoCmd = "insert into Devolucion (Motivo_Devolucion, Descripcion, FechaDevol) VALUES (@Motivo_Devolucion, @Descripcion, @FechaDevol)";
                 SqlCommand cmd = new SqlCommand(textoCmd, con);
                 cmd = d.ObtenerParametros(cmd);
                 cmd.ExecuteNonQuery();
@@ -53,7 +54,7 @@ namespace Proyecto_Bodega
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
             {
                 con.Open();
-                string textoCMD = "UPDATE Devolucion SET Motivo_Devolucion = @Motivo_Devolucion, Articulo = @Articulo, FechaDevol= @FechaDevol where Id = @Id";
+                string textoCMD = "UPDATE Devolucion SET Motivo_Devolucion = @Motivo_Devolucion, Descripcion = @Descripcion, FechaDevol= @FechaDevol where Id = @Id";
 
                 SqlCommand cmd = new SqlCommand(textoCMD, con);
                 cmd = d.ObtenerParametros(cmd, true);
@@ -106,7 +107,7 @@ namespace Proyecto_Bodega
 
         {
             SqlParameter p1 = new SqlParameter("@Motivo_Devolucion", this.Motivo_Devolucion);
-            SqlParameter p2 = new SqlParameter("@Articulo", this.Articulo.Id);
+            SqlParameter p2 = new SqlParameter("@Descripcion", this.Articulo.Id);
             SqlParameter p3 = new SqlParameter("@FechaDevol", this.FechaDevol);
 
             p1.SqlDbType = SqlDbType.VarChar;

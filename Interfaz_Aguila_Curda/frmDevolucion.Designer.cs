@@ -49,74 +49,68 @@
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(192, 9);
-            this.lblTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitulo.Location = new System.Drawing.Point(144, 7);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(197, 39);
+            this.lblTitulo.Size = new System.Drawing.Size(159, 31);
             this.lblTitulo.TabIndex = 42;
             this.lblTitulo.Text = "Devolucion";
             // 
             // cmbDescripcion
             // 
             this.cmbDescripcion.FormattingEnabled = true;
-            this.cmbDescripcion.Location = new System.Drawing.Point(237, 256);
-            this.cmbDescripcion.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbDescripcion.Location = new System.Drawing.Point(178, 208);
             this.cmbDescripcion.Name = "cmbDescripcion";
-            this.cmbDescripcion.Size = new System.Drawing.Size(172, 24);
+            this.cmbDescripcion.Size = new System.Drawing.Size(130, 21);
             this.cmbDescripcion.TabIndex = 85;
             // 
             // dtpFechaDevolucion
             // 
             this.dtpFechaDevolucion.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaDevolucion.Location = new System.Drawing.Point(237, 201);
-            this.dtpFechaDevolucion.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpFechaDevolucion.Location = new System.Drawing.Point(178, 163);
             this.dtpFechaDevolucion.Name = "dtpFechaDevolucion";
-            this.dtpFechaDevolucion.Size = new System.Drawing.Size(172, 22);
+            this.dtpFechaDevolucion.Size = new System.Drawing.Size(130, 20);
             this.dtpFechaDevolucion.TabIndex = 84;
             // 
             // lblDescripcionDelProducto
             // 
             this.lblDescripcionDelProducto.AutoSize = true;
-            this.lblDescripcionDelProducto.Location = new System.Drawing.Point(61, 260);
-            this.lblDescripcionDelProducto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDescripcionDelProducto.Location = new System.Drawing.Point(46, 211);
             this.lblDescripcionDelProducto.Name = "lblDescripcionDelProducto";
-            this.lblDescripcionDelProducto.Size = new System.Drawing.Size(166, 17);
+            this.lblDescripcionDelProducto.Size = new System.Drawing.Size(126, 13);
             this.lblDescripcionDelProducto.TabIndex = 83;
             this.lblDescripcionDelProducto.Text = "Descripcion del Producto";
             // 
             // lblFechaDevolucion
             // 
             this.lblFechaDevolucion.AutoSize = true;
-            this.lblFechaDevolucion.Location = new System.Drawing.Point(61, 201);
-            this.lblFechaDevolucion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFechaDevolucion.Location = new System.Drawing.Point(46, 163);
             this.lblFechaDevolucion.Name = "lblFechaDevolucion";
-            this.lblFechaDevolucion.Size = new System.Drawing.Size(121, 17);
+            this.lblFechaDevolucion.Size = new System.Drawing.Size(94, 13);
             this.lblFechaDevolucion.TabIndex = 82;
             this.lblFechaDevolucion.Text = "Fecha Devolucion";
             // 
             // txtMotivoDevolucion
             // 
-            this.txtMotivoDevolucion.Location = new System.Drawing.Point(237, 144);
-            this.txtMotivoDevolucion.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMotivoDevolucion.Location = new System.Drawing.Point(178, 117);
             this.txtMotivoDevolucion.Name = "txtMotivoDevolucion";
-            this.txtMotivoDevolucion.Size = new System.Drawing.Size(172, 22);
+            this.txtMotivoDevolucion.Size = new System.Drawing.Size(130, 20);
             this.txtMotivoDevolucion.TabIndex = 81;
             // 
             // lblMotivoDevolucion
             // 
             this.lblMotivoDevolucion.AutoSize = true;
-            this.lblMotivoDevolucion.Location = new System.Drawing.Point(62, 147);
-            this.lblMotivoDevolucion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMotivoDevolucion.Location = new System.Drawing.Point(46, 119);
             this.lblMotivoDevolucion.Name = "lblMotivoDevolucion";
-            this.lblMotivoDevolucion.Size = new System.Drawing.Size(123, 17);
+            this.lblMotivoDevolucion.Size = new System.Drawing.Size(96, 13);
             this.lblMotivoDevolucion.TabIndex = 80;
             this.lblMotivoDevolucion.Text = "Motivo Devolucion";
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(428, 328);
+            this.btnLimpiar.Location = new System.Drawing.Point(321, 266);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(107, 46);
+            this.btnLimpiar.Size = new System.Drawing.Size(80, 37);
             this.btnLimpiar.TabIndex = 95;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
@@ -124,9 +118,10 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(180, 328);
+            this.btnEditar.Location = new System.Drawing.Point(135, 266);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(107, 46);
+            this.btnEditar.Size = new System.Drawing.Size(80, 37);
             this.btnEditar.TabIndex = 94;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -135,18 +130,19 @@
             // lstDevolucion
             // 
             this.lstDevolucion.FormattingEnabled = true;
-            this.lstDevolucion.ItemHeight = 16;
-            this.lstDevolucion.Location = new System.Drawing.Point(54, 419);
+            this.lstDevolucion.Location = new System.Drawing.Point(40, 340);
+            this.lstDevolucion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lstDevolucion.Name = "lstDevolucion";
-            this.lstDevolucion.Size = new System.Drawing.Size(481, 116);
+            this.lstDevolucion.Size = new System.Drawing.Size(362, 95);
             this.lstDevolucion.TabIndex = 93;
             this.lstDevolucion.Click += new System.EventHandler(this.lstDevolucion_Click_1);
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(302, 328);
+            this.btnEliminar.Location = new System.Drawing.Point(226, 266);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(107, 46);
+            this.btnEliminar.Size = new System.Drawing.Size(80, 37);
             this.btnEliminar.TabIndex = 92;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
@@ -154,9 +150,10 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(54, 328);
+            this.btnAgregar.Location = new System.Drawing.Point(40, 266);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(107, 46);
+            this.btnAgregar.Size = new System.Drawing.Size(80, 37);
             this.btnAgregar.TabIndex = 91;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -164,27 +161,29 @@
             // 
             // txtIDDevolucion
             // 
-            this.txtIDDevolucion.Location = new System.Drawing.Point(237, 88);
+            this.txtIDDevolucion.Location = new System.Drawing.Point(178, 72);
+            this.txtIDDevolucion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtIDDevolucion.Name = "txtIDDevolucion";
             this.txtIDDevolucion.ReadOnly = true;
-            this.txtIDDevolucion.Size = new System.Drawing.Size(172, 22);
+            this.txtIDDevolucion.Size = new System.Drawing.Size(130, 20);
             this.txtIDDevolucion.TabIndex = 97;
             // 
             // lblIdDevolucion
             // 
             this.lblIdDevolucion.AutoSize = true;
             this.lblIdDevolucion.Enabled = false;
-            this.lblIdDevolucion.Location = new System.Drawing.Point(62, 91);
+            this.lblIdDevolucion.Location = new System.Drawing.Point(46, 74);
+            this.lblIdDevolucion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblIdDevolucion.Name = "lblIdDevolucion";
-            this.lblIdDevolucion.Size = new System.Drawing.Size(19, 17);
+            this.lblIdDevolucion.Size = new System.Drawing.Size(16, 13);
             this.lblIdDevolucion.TabIndex = 96;
             this.lblIdDevolucion.Text = "Id";
             // 
             // frmDevolucion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(589, 605);
+            this.ClientSize = new System.Drawing.Size(442, 492);
             this.Controls.Add(this.txtIDDevolucion);
             this.Controls.Add(this.lblIdDevolucion);
             this.Controls.Add(this.btnLimpiar);
@@ -199,7 +198,6 @@
             this.Controls.Add(this.txtMotivoDevolucion);
             this.Controls.Add(this.lblMotivoDevolucion);
             this.Controls.Add(this.lblTitulo);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDevolucion";
             this.Text = "frmDevolucion";
             this.Load += new System.EventHandler(this.frmDevolucion_Load);

@@ -16,7 +16,7 @@ namespace Interfaz_Aguila_Curda
 
     public partial class frmDevolucion : Form
     {
-
+        string modo;
 
         public frmDevolucion()
         {
@@ -24,7 +24,7 @@ namespace Interfaz_Aguila_Curda
         }
 
 
-            
+
 
 
         private void ActualizarListaDevolucion()
@@ -44,7 +44,7 @@ namespace Interfaz_Aguila_Curda
 
         }
 
-        
+
 
         private Devolucion ObtenerDevolucionFormulario()
         {
@@ -66,17 +66,56 @@ namespace Interfaz_Aguila_Curda
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            Devolucion devolucion = new Devolucion();
-            devolucion.Motivo_Devolucion = txtMotivoDevolucion.Text;
-            devolucion.FechaDevol = dtpFechaDevolucion.Value.Date;
-            devolucion.Articulo = (Articulo)cmbDescripcion.SelectedItem;
+            if (ValidarCampos())
+            {
+                modo = "AGREGAR";
+                Devolucion devolucion = new Devolucion();
+                devolucion.Motivo_Devolucion = txtMotivoDevolucion.Text;
+                devolucion.FechaDevol = dtpFechaDevolucion.Value.Date;
+                devolucion.Articulo = (Articulo)cmbDescripcion.SelectedItem;
 
-            Devolucion.AgregarDevolucion(devolucion);
+                Devolucion.AgregarDevolucion(devolucion);
+                LimpiarFormulario();
+            }
 
-            LimpiarFormulario();
             ActualizarListaDevolucion();
+
+
         }
 
+        private bool ValidarCampos()
+        {
+            if (String.IsNullOrWhiteSpace(txtMotivoDevolucion.Text))
+            {
+                MessageBox.Show("El motivo no puede estar vacío", "Error");
+                txtMotivoDevolucion.Focus();
+                return false;
+            }
+            if (txtMotivoDevolucion.Text.Length < 1 || txtMotivoDevolucion.Text.Length > 55)
+            {
+                ;
+                MessageBox.Show("La longitud de caracteres es incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtMotivoDevolucion.Focus();
+                return false;
+            }
+
+
+
+            if (dtpFechaDevolucion.Value >= DateTime.Now)
+            {
+                MessageBox.Show("Por favor ingrese una fecha de devolucion correcta", "Error");
+                dtpFechaDevolucion.Focus();
+                return false;
+            }
+
+            if (cmbDescripcion.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor seleccione una Descripcion del Producto", "Error");
+                cmbDescripcion.Focus();
+                return false;
+            }
+            return true;
+        }
         private void frmDevolucion_Load(object sender, EventArgs e)
         {
             ActualizarListaDevolucion();
@@ -86,20 +125,25 @@ namespace Interfaz_Aguila_Curda
 
         private void btnEditar_Click_1(object sender, EventArgs e)
         {
-            Devolucion devolucion = (Devolucion)lstDevolucion.SelectedItem;
-            if (lstDevolucion.SelectedItems.Count > 0)
+            if (ValidarCampos())
             {
+                modo = "EDITAR";
+                Devolucion devolucion = (Devolucion)lstDevolucion.SelectedItem;
+                if (lstDevolucion.SelectedItems.Count > 0)
+                {
 
-                int index = lstDevolucion.SelectedIndex;
-                Devolucion d = ObtenerDevolucionFormulario();
-                Devolucion.EditarDevolucion(index, d);
-                ActualizarListaDevolucion();
+                    int index = lstDevolucion.SelectedIndex;
+                    Devolucion d = ObtenerDevolucionFormulario();
+                    Devolucion.EditarDevolucion(index, d);
+                    ActualizarListaDevolucion();
 
+                }
+                else
+                {
+                    MessageBox.Show("Favor seleccionar de la fila para modificar");
+                }
             }
-            else
-            {
-                MessageBox.Show("Favor seleccionar de la fila para modificar");
-            }
+
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
