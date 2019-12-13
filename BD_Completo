@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [AguilaCurda]    Script Date: 24/11/2019 01:32:34 ******/
+/****** Object:  Database [AguilaCurda]    Script Date: 13/12/2019 17:24:26 ******/
 CREATE DATABASE [AguilaCurda]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -75,7 +75,7 @@ ALTER DATABASE [AguilaCurda] SET DELAYED_DURABILITY = DISABLED
 GO
 USE [AguilaCurda]
 GO
-/****** Object:  Table [dbo].[Articulo]    Script Date: 24/11/2019 01:32:34 ******/
+/****** Object:  Table [dbo].[Articulo]    Script Date: 13/12/2019 17:24:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -99,7 +99,7 @@ CREATE TABLE [dbo].[Articulo](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[Cliente]    Script Date: 24/11/2019 01:32:34 ******/
+/****** Object:  Table [dbo].[Cliente]    Script Date: 13/12/2019 17:24:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -118,7 +118,7 @@ CREATE TABLE [dbo].[Cliente](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Compra]    Script Date: 24/11/2019 01:32:34 ******/
+/****** Object:  Table [dbo].[Compra]    Script Date: 13/12/2019 17:24:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -132,6 +132,7 @@ CREATE TABLE [dbo].[Compra](
 	[Direccion] [varchar](50) NULL,
 	[MedioPago] [int] NULL,
 	[FechaCompra] [datetime] NULL,
+	[MontoTotal] [float] NULL,
  CONSTRAINT [PK_Compra] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -141,7 +142,7 @@ CREATE TABLE [dbo].[Compra](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[DetalleCompra]    Script Date: 24/11/2019 01:32:34 ******/
+/****** Object:  Table [dbo].[DetalleCompra]    Script Date: 13/12/2019 17:24:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -149,9 +150,9 @@ GO
 CREATE TABLE [dbo].[DetalleCompra](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Articulo] [int] NULL,
-	[Cantidad] [int] NULL,
-	[PrecioUnitario] [nchar](10) NULL,
-	[MontoTotal] [nchar](10) NULL,
+	[Cantidad] [float] NULL,
+	[Costo] [float] NULL,
+	[CompraId] [int] NOT NULL,
  CONSTRAINT [PK_DetalleCompra] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -159,8 +160,25 @@ CREATE TABLE [dbo].[DetalleCompra](
 ) ON [PRIMARY]
 
 GO
+/****** Object:  Table [dbo].[DetalleFactura]    Script Date: 13/12/2019 17:24:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[DetalleFactura](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[factura_id] [int] NOT NULL,
+	[Cantidad] [float] NULL,
+	[Articulo] [int] NULL,
+	[Precio] [float] NULL,
+ CONSTRAINT [PK_DetalleFactura] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 
-/****** Object:  Table [dbo].[Devolucion]    Script Date: 24/11/2019 01:32:34 ******/
+GO
+/****** Object:  Table [dbo].[Devolucion]    Script Date: 13/12/2019 17:24:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -177,7 +195,11 @@ CREATE TABLE [dbo].[Devolucion](
 ) ON [PRIMARY]
 
 GO
-/******** Crear Factura
+/****** Object:  Table [dbo].[Factura]    Script Date: 13/12/2019 17:24:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[Factura](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[NroFactura] [int] NULL,
@@ -191,23 +213,32 @@ CREATE TABLE [dbo].[Factura](
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
-GO
 
-/******** Crear Detalle Factura
-CREATE TABLE [dbo].[DetalleFactura](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[factura_id] [int] NOT NULL,
-	[Cantidad] [float] NULL,
-	[Articulo] [int] NULL,
-	[Precio] [float] NULL,
- CONSTRAINT [PK_DetalleFactura] PRIMARY KEY CLUSTERED 
+GO
+/****** Object:  Table [dbo].[Proveedor]    Script Date: 13/12/2019 17:24:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Proveedor](
+	[CodProveedor] [int] IDENTITY(1,1) NOT NULL,
+	[Nombre] [nchar](10) NULL,
+	[NroDocumento] [nchar](10) NULL,
+	[Telefono] [nchar](10) NULL,
+	[Direccion] [nchar](50) NULL,
+	[PersonaContacto] [nchar](50) NULL,
+ CONSTRAINT [PK_Proveedor] PRIMARY KEY CLUSTERED 
 (
-	[Id] ASC
-	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[CodProveedor] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Usuarios]    Script Date: 12/12/2019 23:25:22 ******/
+/****** Object:  Table [dbo].[Usuarios]    Script Date: 13/12/2019 17:24:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[Usuarios](
 	[UserID] [int] IDENTITY(1,1) NOT NULL,
 	[LoginName] [nvarchar](100) NOT NULL,
@@ -223,24 +254,6 @@ PRIMARY KEY CLUSTERED
 UNIQUE NONCLUSTERED 
 (
 	[LoginName] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Proveedor]    Script Date: 24/11/2019 01:32:34 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Proveedor](
-	[CodProveedor] [int] IDENTITY(1,1) NOT NULL,
-	[Nombre] [nchar](10) NULL,
-	[NroDocumento] [nchar](10) NULL,
-	[Telefono] [nchar](10) NULL,
-	[Direccion] [nchar](50) NULL,
-	[PersonaContacto] [nchar](50) NULL,
- CONSTRAINT [PK_Proveedor] PRIMARY KEY CLUSTERED 
-(
-	[CodProveedor] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
