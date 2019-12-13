@@ -75,7 +75,7 @@
             this.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUsuario.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsuario.ForeColor = System.Drawing.Color.DimGray;
-            this.txtUsuario.Location = new System.Drawing.Point(385, 96);
+            this.txtUsuario.Location = new System.Drawing.Point(353, 107);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(322, 25);
             this.txtUsuario.TabIndex = 1;
@@ -89,7 +89,7 @@
             this.txtContraseña.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtContraseña.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtContraseña.ForeColor = System.Drawing.Color.DimGray;
-            this.txtContraseña.Location = new System.Drawing.Point(385, 148);
+            this.txtContraseña.Location = new System.Drawing.Point(353, 165);
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.Size = new System.Drawing.Size(322, 25);
             this.txtContraseña.TabIndex = 2;
@@ -116,7 +116,7 @@
             this.btnLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.ForeColor = System.Drawing.Color.LightGray;
-            this.btnLogin.Location = new System.Drawing.Point(349, 205);
+            this.btnLogin.Location = new System.Drawing.Point(349, 226);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(341, 40);
             this.btnLogin.TabIndex = 3;
@@ -131,7 +131,7 @@
             this.linkPass.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkPass.ForeColor = System.Drawing.Color.DimGray;
             this.linkPass.LinkColor = System.Drawing.Color.DimGray;
-            this.linkPass.Location = new System.Drawing.Point(413, 258);
+            this.linkPass.Location = new System.Drawing.Point(413, 281);
             this.linkPass.Name = "linkPass";
             this.linkPass.Size = new System.Drawing.Size(224, 20);
             this.linkPass.TabIndex = 0;
@@ -177,30 +177,32 @@
             this.lineShape2.BorderColor = System.Drawing.Color.DimGray;
             this.lineShape2.Enabled = false;
             this.lineShape2.Name = "lineShape2";
-            this.lineShape2.X1 = 383;
-            this.lineShape2.X2 = 697;
-            this.lineShape2.Y1 = 174;
-            this.lineShape2.Y2 = 173;
+            this.lineShape2.X1 = 266;
+            this.lineShape2.X2 = 504;
+            this.lineShape2.Y1 = 156;
+            this.lineShape2.Y2 = 155;
             // 
             // lineShape1
             // 
             this.lineShape1.BorderColor = System.Drawing.Color.DimGray;
             this.lineShape1.Enabled = false;
             this.lineShape1.Name = "lineShape1";
-            this.lineShape1.X1 = 383;
-            this.lineShape1.X2 = 693;
-            this.lineShape1.Y1 = 122;
-            this.lineShape1.Y2 = 122;
+            this.lineShape1.X1 = 266;
+            this.lineShape1.X2 = 505;
+            this.lineShape1.Y1 = 107;
+            this.lineShape1.Y2 = 107;
+            this.lineShape1.Click += new System.EventHandler(this.lineShape1_Click);
             // 
             // errorLabel
             // 
             this.errorLabel.AutoSize = true;
-            this.errorLabel.ForeColor = System.Drawing.Color.Red;
-            this.errorLabel.Location = new System.Drawing.Point(383, 180);
+            this.errorLabel.ForeColor = System.Drawing.Color.DimGray;
+            this.errorLabel.Location = new System.Drawing.Point(383, 202);
             this.errorLabel.Name = "errorLabel";
             this.errorLabel.Size = new System.Drawing.Size(46, 17);
             this.errorLabel.TabIndex = 9;
             this.errorLabel.Text = "label2";
+            this.errorLabel.Visible = false;
             // 
             // frmLogin
             // 

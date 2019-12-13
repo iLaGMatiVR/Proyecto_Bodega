@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Proyecto_Bodega;
 
 namespace Interfaz_Aguila_Curda
 {
@@ -89,7 +90,20 @@ namespace Interfaz_Aguila_Curda
             {
                 if (txtContraseña.Text != "CONTRASEÑA")
                 {
+                    Usuario usuario = new Usuario();
+                    var ValidLogin = usuario.LoginUser(txtUsuario.Text, txtContraseña.Text);
+                    if(ValidLogin == true){
+                        frmMenuPro menuPro = new frmMenuPro();
+                        menuPro.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        msgError("Incorrect username or password entered. \n Please try again.");
+                        txtContraseña.Clear();
+                        txtUsuario.Focus();
 
+                    }
                 }
                 else msgError("Please enter password");
 
@@ -102,8 +116,11 @@ namespace Interfaz_Aguila_Curda
                 errorLabel.Visible = true;
             }
 
+        private void lineShape1_Click(object sender, EventArgs e)
+        {
 
-              }  
+        }
+    }  
             }
         
     
