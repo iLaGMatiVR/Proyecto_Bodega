@@ -46,7 +46,7 @@ namespace Proyecto_Bodega
 
                 SqlParameter p1 = new SqlParameter("@NroFactura", com.NroFactura);
                 SqlParameter p2 = new SqlParameter("@Proveedor", com.Proveedor.CodProveedor);
-                SqlParameter p3 = new SqlParameter("@Direccion", com.Direccion);
+                SqlParameter p3 = new SqlParameter("@Direccion", com.Proveedor.Direccion);
                 SqlParameter p4 = new SqlParameter("@MedioPago", com.MedioPago);
                 SqlParameter p5 = new SqlParameter("@FechaCompra", com.FechaCompra);
                 SqlParameter p6 = new SqlParameter("@MontoTotal", com.MontoTotal);
@@ -72,17 +72,18 @@ namespace Proyecto_Bodega
 
                 foreach (DetalleCompra dc in com.detalle_compra)
                 {
-                    string textoCmd2 = "INSERT INTO DetalleCompra (Articulo, Cantidad, Costo, CompraId) VALUES (@Articulo, @Cantidad, @Costo, @Id)";
+                    string textoCmd2 = "INSERT INTO DetalleCompra (CompraId, Articulo, Cantidad, Costo) VALUES (@Id, @Articulo, @Cantidad, @Costo)";
                     SqlCommand cmd2 = new SqlCommand(textoCmd2, con);
 
-                    SqlParameter p7 = new SqlParameter("@Articulo", dc.Articulo);
-                    SqlParameter p8 = new SqlParameter("@Cantidad", dc.Cantidad);
-                    SqlParameter p9 = new SqlParameter("@Costo", dc.Costo);
-                    SqlParameter p10 = new SqlParameter("@Id", CompraId);
+                    SqlParameter p7 = new SqlParameter("@Id", CompraId);
+                    SqlParameter p8 = new SqlParameter("@Articulo", dc.Articulo.Id);
+                    SqlParameter p9 = new SqlParameter("@Cantidad", dc.Cantidad);
+                    SqlParameter p10 = new SqlParameter("@Costo", dc.Costo);
+                    
                     p7.SqlDbType = SqlDbType.Int;   
-                    p8.SqlDbType = SqlDbType.Float;
+                    p8.SqlDbType = SqlDbType.Int;
                     p9.SqlDbType = SqlDbType.Float;
-                    p10.SqlDbType = SqlDbType.Int;
+                    p10.SqlDbType = SqlDbType.Float;
                     cmd2.Parameters.Add(p7);
                     cmd2.Parameters.Add(p8);
                     cmd2.Parameters.Add(p9);
@@ -91,7 +92,7 @@ namespace Proyecto_Bodega
                     cmd2.ExecuteNonQuery();
                 }
 
-                cmd.ExecuteNonQuery();
+
 
             }
         }

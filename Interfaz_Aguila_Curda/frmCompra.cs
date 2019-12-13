@@ -89,7 +89,7 @@ namespace Interfaz_Aguila_Curda
             lblTotalMonto.Text = "";
             txtCosto.Text = "";
             compra = new Compra();
-
+            txtDireccion.Text = "";
             //LOGIN MATIAS
             /*if (UserLoginCache.Cargo == Cargos.Cajero)
             {
