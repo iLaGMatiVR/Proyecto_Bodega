@@ -24,10 +24,63 @@ namespace Interfaz_Aguila_Curda
     
         private void btnHabilitarDetalle_Click_1(object sender, EventArgs e)
         {
-            gbxDetalle.Enabled = true;
-            gbxCabecera.Enabled = false;
+            if (ValidarCampos())
+            {
+                gbxDetalle.Enabled = true;
+                gbxCabecera.Enabled = false;
+                cboArticulo.Focus();
+            }
+        }
+        private bool ValidarCampos()
+        {
+            try
+            {
+                int result = int.Parse(txtNroFactura.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor ingrese un valor numerico como Nro de Factura", "Error");
+                txtNroFactura.Text = "";
+                txtNroFactura.SelectAll();
+                txtNroFactura.Focus();
+                return false;
+            }
+            try
+            {
+                int result = int.Parse(txtTimbrado.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor ingrese un valor numerico como Timbrado", "Error");
+                txtTimbrado.Text = "";
+                txtTimbrado.SelectAll();
+                txtTimbrado.Focus();
+                return false;
+            }
 
-            cboArticulo.Focus();
+            var cli = (Cliente)cboCliente.SelectedItem;
+            if (cli == null)
+            {
+                MessageBox.Show("Por favor seleccione un Cliente", "Error");
+                cboCliente.Focus();
+                return false;
+            }
+            var fechaIncorrecta = new DateTime(2100, 1, 1);
+
+            if (dtpFechaFactura.Value < DateTime.Now || dtpFechaFactura.Value > DateTime.Parse("01/01/2100") || dtpFechaFactura.Value > fechaIncorrecta)
+            {
+                MessageBox.Show("Por favor ingrese una fecha de factura correcta", "Error");
+                dtpFechaFactura.Focus();
+                return false;
+            }
+            if (cmbTipoPago.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor seleccione un Tipo de Pago", "Error");
+                cmbTipoPago.Focus();
+                return false;
+            }
+            
+            return true;
         }
 
         private void frmFacturas_Load_1(object sender, EventArgs e)
@@ -41,8 +94,8 @@ namespace Interfaz_Aguila_Curda
             cboArticulo.SelectedItem = null;
             gbxDetalle.Enabled = false;
             gbxCabecera.Enabled = true;
-
-
+            lblTotalMonto.Text = "";
+            txtPrecio.Text = "";
             factura = new Factura();
 
         }
@@ -64,82 +117,52 @@ namespace Interfaz_Aguila_Curda
             cboArticulo.SelectedItem = null;
             txtCantidad.Text = "";
             lblTotalMonto.Text = "";
+            txtPrecio.Text = "";
         }
-
-
-        //private Factura ObtenerDatosFormulario()
-        //{
-        //    Factura factura = new Factura();
-        //    factura.NroFactura = txtNroFactura.Text;
-        //    factura.Timbrado = txtTimbrado.Text;
-        //    factura.Cliente = (Cliente)cboCliente.SelectedItem;
-        //    factura.TipoPago = (TipoPago)cmbTipoPago.SelectedItem;
-        //    factura.FechaFactura = dtpFechaFactura.Value.Date;
-        //    factura.articulo = (Articulo)cboArticulo.SelectedItem;
-
-        //    return factura;
-
-
-           
-        //}
-
-
+       
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-
-            //se va tirando los datos del detalle
-            DetalleFactura df = new DetalleFactura();
-            df.Cantidad = Convert.ToDouble(txtCantidad.Text);
-
-            df.Articulo = (Articulo)cboArticulo.SelectedItem;
-            factura.detalle_factura.Add(df);
-
-            ActualizarLista();
-
-            //realizar calculo monto
-            //lblTotalMonto.Text = Convert.ToString(Articulo.Precio_Unit);
-
-            //lineas para la suma
-            monto = monto + (int.Parse(txtCantidad.Text) * (int.Parse(txtPrecio.Text)));
-            lblTotalMonto.Text = monto.ToString();
+            if (ValidarDetalle())
+            {
+                //se va tirando los datos del detalle
+                DetalleFactura df = new DetalleFactura();
+                df.Cantidad = Convert.ToDouble(txtCantidad.Text);
+                df.Articulo = (Articulo)cboArticulo.SelectedItem;
+                df.Precio = Convert.ToDouble(txtPrecio.Text);
+                factura.detalle_factura.Add(df);
+                monto = monto + (int.Parse(txtCantidad.Text) * (int.Parse(txtPrecio.Text)));
+                lblTotalMonto.Text = monto.ToString();
+                ActualizarLista();
+            }
 
         }
-
-
-        /*private void btnModificar_Click_1(object sender, EventArgs e)
+        private bool ValidarDetalle()
         {
-            if (lstFactura.SelectedItems.Count > 0)
+            var art = (Articulo)cboArticulo.SelectedItem;
+            if (art == null)
             {
-                
-                int indice = lstFactura.SelectedIndex;
-                Factura f = ObtenerDatosFormulario();
-                Factura.ModificarFactura(f, indice);
-                ActualizarLista();
-
+                MessageBox.Show("Por favor seleccione un Articulo", "Error");
+                cboArticulo.Focus();
+                return false;
             }
-            else
+            try
             {
-                MessageBox.Show("Favor seleccionar de la fila para modificar");
+                int result = int.Parse(txtCantidad.Text);
             }
-
-
-        }*/
-
+            catch
+            {
+                MessageBox.Show("Por favor ingrese un valor numerico en Cantidad", "Error");
+                txtCantidad.Text = "";
+                txtCantidad.SelectAll();
+                txtCantidad.Focus();
+                return false;
+            }
+            
+            return true;
+        }
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
-            /*if (this.lstFactura.SelectedItems.Count == 0)
-            {
-                MessageBox.Show("Favor seleccione una fila para eliminar");
-            }
-            else
-            {
-                Factura f = (Factura)lstFactura.SelectedItem;
-                Factura.EliminarFactura(f);
-                ActualizarLista();
-                LimpiarFormulario();
-            }*/
-
-
+           
             DetalleFactura f = (DetalleFactura)dgvFactura.CurrentRow.DataBoundItem;
             factura.detalle_factura.Remove(f);
             ActualizarLista();
@@ -151,40 +174,52 @@ namespace Interfaz_Aguila_Curda
         {
             LimpiarFormulario();
 
-
-            /*r (gvFactura.RowCount - 1 To 0 Step - 1) ;
-                {
-                row DataGridViewRow = dgvFactura.Rows();
-
-            dgvFactura.Rows.Remove();
-
-            }*/
-
             lblTotalMonto.Text = "";
-
-
             gbxCabecera.Enabled = true;
             gbxDetalle.Enabled = false;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            factura.NroFactura = txtNroFactura.Text;
-            factura.Timbrado = txtTimbrado.Text;
-            factura.Cliente = (Cliente)cboCliente.SelectedItem;
-            factura.TipoPago = (TipoPago)cmbTipoPago.SelectedItem;
-            factura.FechaFactura = dtpFechaFactura.Value.Date;
-            Factura.AgregarFactura(factura);
-            MessageBox.Show("La factura ha sido guardado con éxito");
-            LimpiarFormulario();
-            dgvFactura.DataSource = null;
-            dtpFechaFactura.Value = System.DateTime.Now;
-            cboArticulo.SelectedItem = null;
-            cboCliente.SelectedItem = null;
+            if (ValidarCampos() && ValidarDetalle() && ValidarMonto())
+            {
+                factura.NroFactura = Convert.ToInt32(txtNroFactura.Text);
+                factura.Timbrado = Convert.ToInt32(txtTimbrado.Text);
+                factura.Cliente = (Cliente)cboCliente.SelectedItem;
+                factura.TipoPago = (TipoPago)cmbTipoPago.SelectedItem;
+                factura.FechaFactura = dtpFechaFactura.Value.Date;
+                factura.MontoTotal = Convert.ToDouble(lblTotalMonto.Text);
+                Factura.AgregarFactura(factura);
+                MessageBox.Show("La factura ha sido guardado con éxito");
+                LimpiarFormulario();
+                dgvFactura.DataSource = null;
+                dtpFechaFactura.Value = System.DateTime.Now;
+                cboArticulo.SelectedItem = null;
+                cboCliente.SelectedItem = null;
 
-            factura = new Factura();
-            gbxCabecera.Enabled = true;
-            gbxDetalle.Enabled = false;
+                factura = new Factura();
+                gbxCabecera.Enabled = true;
+                gbxDetalle.Enabled = false;
+            }
+        }
+        private bool ValidarMonto()
+        {
+            if (String.IsNullOrWhiteSpace(lblTotalMonto.Text))
+            {
+                MessageBox.Show("El monto total no puede estar vacío, favor calcular", "Error");
+                lblTotalMonto.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        private void cboArticulo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Articulo articulo = (Articulo)cboArticulo.SelectedItem;
+            if (articulo != null)
+            {
+                txtPrecio.Text = Convert.ToString(articulo.Precio_Unit);
+            }
         }
     }
 }
