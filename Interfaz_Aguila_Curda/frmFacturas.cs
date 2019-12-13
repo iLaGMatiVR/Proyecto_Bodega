@@ -41,8 +41,6 @@ namespace Interfaz_Aguila_Curda
             cboArticulo.SelectedItem = null;
             gbxDetalle.Enabled = false;
             gbxCabecera.Enabled = true;
-
-
             factura = new Factura();
 
         }
@@ -66,25 +64,7 @@ namespace Interfaz_Aguila_Curda
             lblTotalMonto.Text = "";
             txtPrecio.Text = "";
         }
-
-
-        //private Factura ObtenerDatosFormulario()
-        //{
-        //    Factura factura = new Factura();
-        //    factura.NroFactura = txtNroFactura.Text;
-        //    factura.Timbrado = txtTimbrado.Text;
-        //    factura.Cliente = (Cliente)cboCliente.SelectedItem;
-        //    factura.TipoPago = (TipoPago)cmbTipoPago.SelectedItem;
-        //    factura.FechaFactura = dtpFechaFactura.Value.Date;
-        //    factura.articulo = (Articulo)cboArticulo.SelectedItem;
-
-        //    return factura;
-
-
-           
-        //}
-
-
+       
         private void btnAgregar_Click(object sender, EventArgs e)
         {
 
@@ -97,50 +77,16 @@ namespace Interfaz_Aguila_Curda
 
             ActualizarLista();
 
-            //realizar calculo monto
-            //lblTotalMonto.Text = Convert.ToString(Articulo.Precio_Unit);
-
-            //lineas para la suma
             monto = monto + (int.Parse(txtCantidad.Text) * (int.Parse(txtPrecio.Text)));
             lblTotalMonto.Text = monto.ToString();
 
         }
 
 
-        /*private void btnModificar_Click_1(object sender, EventArgs e)
-        {
-            if (lstFactura.SelectedItems.Count > 0)
-            {
-                
-                int indice = lstFactura.SelectedIndex;
-                Factura f = ObtenerDatosFormulario();
-                Factura.ModificarFactura(f, indice);
-                ActualizarLista();
-
-            }
-            else
-            {
-                MessageBox.Show("Favor seleccionar de la fila para modificar");
-            }
-
-
-        }*/
 
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
-            /*if (this.lstFactura.SelectedItems.Count == 0)
-            {
-                MessageBox.Show("Favor seleccione una fila para eliminar");
-            }
-            else
-            {
-                Factura f = (Factura)lstFactura.SelectedItem;
-                Factura.EliminarFactura(f);
-                ActualizarLista();
-                LimpiarFormulario();
-            }*/
-
-
+           
             DetalleFactura f = (DetalleFactura)dgvFactura.CurrentRow.DataBoundItem;
             factura.detalle_factura.Remove(f);
             ActualizarLista();
@@ -152,20 +98,10 @@ namespace Interfaz_Aguila_Curda
         {
             LimpiarFormulario();
 
-
-            /*r (gvFactura.RowCount - 1 To 0 Step - 1) ;
-                {
-                row DataGridViewRow = dgvFactura.Rows();
-
-            dgvFactura.Rows.Remove();
-
-            }*/
-
             lblTotalMonto.Text = "";
-
-
             gbxCabecera.Enabled = true;
             gbxDetalle.Enabled = false;
+            ActualizarLista();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -187,6 +123,15 @@ namespace Interfaz_Aguila_Curda
             factura = new Factura();
             gbxCabecera.Enabled = true;
             gbxDetalle.Enabled = false;
+        }
+
+        private void cboArticulo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Articulo articulo = (Articulo)cboArticulo.SelectedItem;
+            if (articulo != null)
+            {
+                txtPrecio.Text = Convert.ToString(articulo.Precio_Unit);
+            }
         }
     }
 }

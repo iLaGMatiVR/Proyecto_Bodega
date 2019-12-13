@@ -160,6 +160,7 @@
             this.cboArticulo.Name = "cboArticulo";
             this.cboArticulo.Size = new System.Drawing.Size(132, 24);
             this.cboArticulo.TabIndex = 87;
+            this.cboArticulo.SelectedIndexChanged += new System.EventHandler(this.cboArticulo_SelectedIndexChanged);
             // 
             // lblCantidad
             // 
