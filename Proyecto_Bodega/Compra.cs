@@ -40,7 +40,7 @@ namespace Proyecto_Bodega
 
             {
                 con.Open(); //Abrimos la conex con la BD
-                string textoCmd = "insert into Compra (NroFactura, Proveedor, Direccion, MedioPago, FechaCompra, MontoTotal) VALUES (@NroFactura, @Proveedor, @Direccion, @TipoPago,  @FechaCompra, @MontoTotal)";
+                string textoCmd = "insert into Compra (NroFactura, Proveedor, Direccion, MedioPago, FechaCompra, MontoTotal) output INSERTED.id VALUES (@NroFactura, @Proveedor, @Direccion, @MedioPago, @FechaCompra, @MontoTotal)";
                 SqlCommand cmd = new SqlCommand(textoCmd, con);
                 //PARAMETROS
 
@@ -55,10 +55,10 @@ namespace Proyecto_Bodega
                 //Le decimos a los parametros de que tipo de datos son
                 p1.SqlDbType = SqlDbType.Int;
                 p2.SqlDbType = SqlDbType.Int;
-                p3.SqlDbType = SqlDbType.Int;
+                p3.SqlDbType = SqlDbType.VarChar;
                 p4.SqlDbType = SqlDbType.Int;
                 p5.SqlDbType = SqlDbType.DateTime;
-                p6.SqlDbType = SqlDbType.Int;
+                p6.SqlDbType = SqlDbType.Float;
 
                 //Agragamos los parametros al command
                 cmd.Parameters.Add(p1);
@@ -72,14 +72,14 @@ namespace Proyecto_Bodega
 
                 foreach (DetalleCompra dc in com.detalle_compra)
                 {
-                    string textoCmd2 = "INSERT INTO DetalleCompra (Articulo, Cantidad, Costo, CompraId)VALUES (@Articulo, @Cantidad, @Costo, @id)";
+                    string textoCmd2 = "INSERT INTO DetalleCompra (Articulo, Cantidad, Costo, CompraId) VALUES (@Articulo, @Cantidad, @Costo, @Id)";
                     SqlCommand cmd2 = new SqlCommand(textoCmd2, con);
 
                     SqlParameter p7 = new SqlParameter("@Articulo", dc.Articulo);
                     SqlParameter p8 = new SqlParameter("@Cantidad", dc.Cantidad);
                     SqlParameter p9 = new SqlParameter("@Costo", dc.Costo);
-                    SqlParameter p10 = new SqlParameter("@id", CompraId);
-                    p7.SqlDbType = SqlDbType.Int;
+                    SqlParameter p10 = new SqlParameter("@Id", CompraId);
+                    p7.SqlDbType = SqlDbType.Int;   
                     p8.SqlDbType = SqlDbType.Float;
                     p9.SqlDbType = SqlDbType.Float;
                     p10.SqlDbType = SqlDbType.Int;
