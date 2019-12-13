@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clases_Aguila_Curda", "Proy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaz_Aguila_Curda", "Interfaz_Aguila_Curda\Interfaz_Aguila_Curda.csproj", "{C484E94C-7B2F-47C9-A803-E27A841BE1AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccesoDatos", "AccesoDatos\AccesoDatos.csproj", "{2BEC84A0-9B0A-44E2-916D-03D19465D2D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C484E94C-7B2F-47C9-A803-E27A841BE1AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C484E94C-7B2F-47C9-A803-E27A841BE1AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C484E94C-7B2F-47C9-A803-E27A841BE1AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BEC84A0-9B0A-44E2-916D-03D19465D2D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BEC84A0-9B0A-44E2-916D-03D19465D2D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BEC84A0-9B0A-44E2-916D-03D19465D2D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BEC84A0-9B0A-44E2-916D-03D19465D2D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
