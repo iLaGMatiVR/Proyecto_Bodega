@@ -177,7 +177,11 @@ CREATE TABLE [dbo].[Devolucion](
 ) ON [PRIMARY]
 
 GO
-@@ -39,6 +39,7 @@ CREATE TABLE [dbo].[Factura](
+/******** Crear Factura
+CREATE TABLE [dbo].[Factura](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[NroFactura] [int] NULL,
+	[Timbrado] [int] NULL,
 	[Cliente] [int] NULL,
 	[TipoPago] [int] NULL,
 	[FechaFactura] [datetime] NULL,
@@ -185,11 +189,11 @@ GO
  CONSTRAINT [PK_Factura] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-@@ -60,12 +61,12 @@ CREATE TABLE [dbo].[Proveedor](
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 
-
+/******** Crear Detalle Factura
 CREATE TABLE [dbo].[DetalleFactura](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[factura_id] [int] NOT NULL,
