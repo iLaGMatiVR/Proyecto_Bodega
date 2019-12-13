@@ -348,7 +348,6 @@
             // 
             // txtNroFactura
             // 
-            this.txtNroFactura.Enabled = false;
             this.txtNroFactura.Location = new System.Drawing.Point(189, 52);
             this.txtNroFactura.Margin = new System.Windows.Forms.Padding(4);
             this.txtNroFactura.Name = "txtNroFactura";
