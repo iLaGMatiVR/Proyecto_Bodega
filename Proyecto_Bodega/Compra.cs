@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using Proyecto_Bodega;
 
 namespace Proyecto_Bodega
 {
@@ -18,11 +19,17 @@ namespace Proyecto_Bodega
     {
 
         public int Id { get; set; }
-        public string NroFactura { get; set; }
+        public int NroFactura { get; set; }
         public Proveedor Proveedor { get; set; }
         public string Direccion { get; set; }
         public MedioPago MedioPago { get; set; }
         public DateTime FechaCompra { get; set; }
+
+        public double MontoTotal { get; set; }
+
+
+
+        public List<DetalleCompra> detalle_compra = new List<DetalleCompra>();
 
         public static List<Compra> listaCompra = new List<Compra>();
 
@@ -33,124 +40,83 @@ namespace Proyecto_Bodega
 
             {
                 con.Open(); //Abrimos la conex con la BD
-                string textoCmd = "insert into Compra (NroFactura, Proveedor, Direccion, MedioPago, FechaCompra) VALUES (@NroFactura, @Proveedor, @Direccion, @TipoPago,  @FechaCompra)";
+                string textoCmd = "insert into Compra (NroFactura, Proveedor, Direccion, MedioPago, FechaCompra, MontoTotal) VALUES (@NroFactura, @Proveedor, @Direccion, @TipoPago,  @FechaCompra, @MontoTotal)";
                 SqlCommand cmd = new SqlCommand(textoCmd, con);
-                cmd = com.ObtenerParametros(cmd);
+                //PARAMETROS
 
-                cmd.ExecuteNonQuery();
+                SqlParameter p1 = new SqlParameter("@NroFactura", com.NroFactura);
+                SqlParameter p2 = new SqlParameter("@Proveedor", com.Proveedor.CodProveedor);
+                SqlParameter p3 = new SqlParameter("@Direccion", com.Direccion);
+                SqlParameter p4 = new SqlParameter("@MedioPago", com.MedioPago);
+                SqlParameter p5 = new SqlParameter("@FechaCompra", com.FechaCompra);
+                SqlParameter p6 = new SqlParameter("@MontoTotal", com.MontoTotal);
 
-            }
-        }
 
-        public static void EliminarCompra(Compra c)
-        {
-
-
-            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
-
-            {
-                con.Open();
-                string SENTENCIA_SQL = "delete from Compra where Id = @Id";
-
-                SqlCommand cmd = new SqlCommand(SENTENCIA_SQL, con);
-                SqlParameter p6 = new SqlParameter("@Id", c.Id);
+                //Le decimos a los parametros de que tipo de datos son
+                p1.SqlDbType = SqlDbType.Int;
+                p2.SqlDbType = SqlDbType.Int;
+                p3.SqlDbType = SqlDbType.Int;
+                p4.SqlDbType = SqlDbType.Int;
+                p5.SqlDbType = SqlDbType.DateTime;
                 p6.SqlDbType = SqlDbType.Int;
+
+                //Agragamos los parametros al command
+                cmd.Parameters.Add(p1);
+                cmd.Parameters.Add(p2);
+                cmd.Parameters.Add(p3);
+                cmd.Parameters.Add(p4);
+                cmd.Parameters.Add(p5);
                 cmd.Parameters.Add(p6);
 
+                int CompraId = (int)cmd.ExecuteScalar();
+
+                foreach (DetalleCompra dc in com.detalle_compra)
+                {
+                    string textoCmd2 = "INSERT INTO DetalleCompra (Articulo, Cantidad, Costo, CompraId)VALUES (@Articulo, @Cantidad, @Costo, @id)";
+                    SqlCommand cmd2 = new SqlCommand(textoCmd2, con);
+
+                    SqlParameter p7 = new SqlParameter("@Articulo", dc.Articulo);
+                    SqlParameter p8 = new SqlParameter("@Cantidad", dc.Cantidad);
+                    SqlParameter p9 = new SqlParameter("@Costo", dc.Costo);
+                    SqlParameter p10 = new SqlParameter("@id", CompraId);
+                    p7.SqlDbType = SqlDbType.Int;
+                    p8.SqlDbType = SqlDbType.Float;
+                    p9.SqlDbType = SqlDbType.Float;
+                    p10.SqlDbType = SqlDbType.Int;
+                    cmd2.Parameters.Add(p7);
+                    cmd2.Parameters.Add(p8);
+                    cmd2.Parameters.Add(p9);
+                    cmd2.Parameters.Add(p10);
+
+                    cmd2.ExecuteNonQuery();
+                }
+
                 cmd.ExecuteNonQuery();
-                con.Close();
+
             }
         }
-        public static void ModificarCompra(Compra c, int indice)
+
+        public static void EliminarCompra(Compra com)
         {
 
-
-            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
-            {
-                con.Open();
-                string textoCMD = "UPDATE Compra SET NroFactura =@NroFactura, Cliente=  @Cliente, Direccion= @Direccion, MedioPago= @MedioPago, FechaCompra= @FechaCompra where Id = @Id";
-
-                SqlCommand cmd = new SqlCommand(textoCMD, con);
-                cmd = c.ObtenerParametros(cmd, true);
-
-                cmd.ExecuteNonQuery();
-
-            }
+            listaCompra.Remove(com);
         }
 
         public static List<Compra> ObtenerCompra()
         {
 
-            Compra compra;
-            listaCompra.Clear();
-            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
-
-            {
-                con.Open();
-                string textoCMD = "Select * from Factura";
-
-                SqlCommand cmd = new SqlCommand(textoCMD, con);
-
-                SqlDataReader elLectorDeDatos = cmd.ExecuteReader();
-
-                while (elLectorDeDatos.Read())
-                {
-                    compra = new Compra();
-                    compra.Id = elLectorDeDatos.GetInt32(0);
-                    compra.NroFactura = elLectorDeDatos.GetString(1);
-                    compra.Proveedor = Proveedor.ObtenerProveedor(elLectorDeDatos.GetInt32(2));
-                    compra.Direccion = elLectorDeDatos.GetString(3);
-                    compra.MedioPago = (MedioPago)elLectorDeDatos.GetInt16(4);
-                    compra.FechaCompra = elLectorDeDatos.GetDateTime(5);
-                    listaCompra.Add(compra);
-                }
-
-                return listaCompra;
-
-            }
-        }
-        private SqlCommand ObtenerParametros(SqlCommand cmd, Boolean id = false)
-        {
-            //PARAMETROS
-            SqlParameter p1 = new SqlParameter("@NroFactura", this.NroFactura);
-            SqlParameter p2 = new SqlParameter("@Proveedor", this.Proveedor.CodProveedor);
-            SqlParameter p3 = new SqlParameter("@Timbrado", this.Direccion);
-            SqlParameter p4 = new SqlParameter("@MedioPago", this.MedioPago);
-            SqlParameter p5 = new SqlParameter("@FechaCompra", this.FechaCompra);
-
-            //Le decimos a los parametros de que tipo de datos son
-            p1.SqlDbType = SqlDbType.Int;
-            p2.SqlDbType = SqlDbType.Int;
-            p3.SqlDbType = SqlDbType.VarChar;
-            p4.SqlDbType = SqlDbType.Int;
-            p5.SqlDbType = SqlDbType.DateTime;
-
-            //Agragamos los parametros al command
-            cmd.Parameters.Add(p1);
-            cmd.Parameters.Add(p2);
-            cmd.Parameters.Add(p3);
-            cmd.Parameters.Add(p4);
-            cmd.Parameters.Add(p5);
-
-            if (id == true)
-            {
-                cmd = ObtenerParametrosId(cmd);
-            }
-            return cmd;
-        }
-
-        private SqlCommand ObtenerParametrosId(SqlCommand cmd)
-        {
-            SqlParameter p6 = new SqlParameter("@id", this.Id);
-            p6.SqlDbType = SqlDbType.Int;
-            cmd.Parameters.Add(p6);
-            return cmd;
+            return listaCompra;
 
         }
+
+
+
+
+
 
         public override string ToString()
         {
-            return this.NroFactura;
+            return this.Proveedor.Nombre;
         }
 
     }
