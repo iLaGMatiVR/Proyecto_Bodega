@@ -14,7 +14,7 @@ namespace Interfaz_Aguila_Curda
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
+            //Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Se inicia con el form de art
             Application.Run(new frmLogin());

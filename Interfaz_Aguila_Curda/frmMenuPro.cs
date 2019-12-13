@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using CapaComun.Cache;
 
 namespace Interfaz_Aguila_Curda
 {
@@ -101,7 +102,7 @@ namespace Interfaz_Aguila_Curda
 
         private void btnReporte_Click(object sender, EventArgs e)
         {
-            //AbrirFormInPanel(new frmArticulo());
+            AbrirFormInPanel(new frmDevolucion());
         }
 
         private void icoMaximizar_Click(object sender, EventArgs e)
@@ -109,6 +110,32 @@ namespace Interfaz_Aguila_Curda
             this.WindowState = FormWindowState.Maximized;
             iconRestaurar.Visible = true;
             icoMaximizar.Visible = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure to log out?", "Warning",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            this.Close();
+        }
+
+        private void LoadUserData()
+        {
+            lblNombre.Text = UserLoginCache.Nombre+","+UserLoginCache.Apellido;
+            lblCargo.Text = UserLoginCache.Cargo;
+            lblEmail.Text = UserLoginCache.Email;
+        }
+
+        private void frmMenuPro_Load(object sender, EventArgs e)
+        {
+            LoadUserData();
+            //Administrar Permisos
+           if(UserLoginCache.Cargo == Cargos.Cajero)
+            {
+                btnCompra.Enabled = false;
+                btnReporte.Enabled = false;
+                btnProveedor.Enabled = false;
+            }
         }
     }
 }

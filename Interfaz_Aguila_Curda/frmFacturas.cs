@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaComun.Cache;
 
 namespace Interfaz_Aguila_Curda
 {
@@ -97,6 +98,14 @@ namespace Interfaz_Aguila_Curda
             lblTotalMonto.Text = "";
             txtPrecio.Text = "";
             factura = new Factura();
+            if (UserLoginCache.Cargo == Cargos.Cajero)
+            {
+                
+                
+                btnEliminar.Enabled = false;
+
+
+            }
 
         }
 

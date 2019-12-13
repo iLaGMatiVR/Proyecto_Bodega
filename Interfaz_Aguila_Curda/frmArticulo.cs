@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Proyecto_Bodega;
+using CapaComun.Cache;
 
 namespace Interfaz_Aguila_Curda
 {
@@ -133,8 +134,16 @@ namespace Interfaz_Aguila_Curda
             cmbProveedor.DataSource = Proveedor.ObtenerProveedores();
             //cmbProveedor.SelectedIndex = 1;
             cmbProveedor.SelectedItem = null;
-        }
+            //Administrar Permisos
+            if (UserLoginCache.Cargo == Cargos.Cajero)
+            {
+                btnAgregar.Enabled = false;
+                btnEditar.Enabled = false;
+                btnEliminar.Enabled = false;
 
+
+            }
+        }
        
 
         private void lstArticulos_Click_1(object sender, EventArgs e)

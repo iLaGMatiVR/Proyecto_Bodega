@@ -137,6 +137,7 @@
             this.linkPass.TabIndex = 0;
             this.linkPass.TabStop = true;
             this.linkPass.Text = "¿Ha olvidado su contraseña?";
+            this.linkPass.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkPass_LinkClicked);
             // 
             // btnMinimizar
             // 
@@ -191,7 +192,6 @@
             this.lineShape1.X2 = 505;
             this.lineShape1.Y1 = 107;
             this.lineShape1.Y2 = 107;
-            this.lineShape1.Click += new System.EventHandler(this.lineShape1_Click);
             // 
             // errorLabel
             // 

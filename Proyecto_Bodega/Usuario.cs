@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AccesoDatos;
+using CapaComun.Cache;
 
 namespace Proyecto_Bodega
 {
@@ -15,7 +16,26 @@ namespace Proyecto_Bodega
             
                 return User.Login(user, pass);
             }
+        public string recoverPassword(string userRequesting)
+        {
+            return User.recoverPassword(userRequesting);
+        }
 
-        
+        // Permisos y seguridad
+        public void AnyMethod()
+        {
+            if (UserLoginCache.Cargo == Cargos.Administrador)
+            {
+                //
+            }
+            if (UserLoginCache.Cargo == Cargos.Cajero)
+            {
+                //
+            }
+
+
+        }
+
+
     }
 }
